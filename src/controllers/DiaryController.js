@@ -5,5 +5,4 @@ exports.getDiary = (request, response) => {
   } else {
     response.status(200).json(DiaryModel.data);
   }
-  response.status(200).json(DiaryModel.data);
 }
