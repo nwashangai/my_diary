@@ -1,0 +1,4 @@
+to build app to ES2015: npm run build
+to run app.js: npm start
+to run ESlint: ./node_modules/.bin/eslint src/app.js
+
