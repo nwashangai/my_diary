@@ -25,3 +25,19 @@ exports.setDiary = function (request, response) {
     response.json({ res: _DiaryModel2.default.data });
   }
 };
+
+exports.updateDiary = function (request, response) {
+  var userID = request.params.id;
+  if (_DiaryModel2.default.data.hasOwnProperty(userID)) {
+    if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
+      response.json({ warning: 'sorry please provide all fields' });
+    } else {
+      var entry = request.body;
+      entry.date = new Date();
+      _DiaryModel2.default.data.userID = request.body;
+      response.json({ res: _DiaryModel2.default.data.userID });
+    }
+  } else {
+    response.json({ error: 'sorry problem in saving data' });
+  }
+};
