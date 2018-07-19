@@ -20,7 +20,7 @@ You will need to have the following softwares installed on your local machine
 
 ## Installing
 
-A step by step series of instruction to install and get a development env running
+A step by step series of instruction to install and get a development env running 
 
 ```
 npm install
