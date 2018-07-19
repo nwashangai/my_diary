@@ -16,4 +16,5 @@ router.get('/', _DiaryController2.default.getDiary);
 router.get('/entries', _DiaryController2.default.getDiary);
 router.get('/entries/:id', _DiaryController2.default.getDiary);
 router.post('/entries', _DiaryController2.default.setDiary);
+router.put('/entries/:id', _DiaryController2.default.updateDiary);
 module.exports = router;
