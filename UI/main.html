@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/icons.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="header"><span class="navbar-brand" id="home">My Diary</span>
+        <span class="dropdown">
+            <span class="gear"></span>
+            <span class="dropdown-content">
+                <a id="logout">Logout</a>
+                <a id="prf">Profile</a>
+            </span>
+        </span>
+        <div class="bell badge tooltip" data-badge="6">
+            <span class="tooltiptext">reminder</span>
+        </div>
+    </div>
+    <div id="sidebar-left">
+        <span id="add" class="btn"><span class="plus">+</span> New</span><br/><br/>
+        <ul>
+            <li class="side-item" onclick="getDairy('andela')">This is Andela</li>
+            <li class="side-item" onclick="getDairy('africa')">This is Africa</li>
+            <li class="side-item" onclick="getDairy('project')">Fast track project</li>
+            <li class="side-item" onclick="getDairy('work')">Done with work</li>
+        </ul>
+    </div>
+    <div id="main">
+        <div class="box-in" id="welcome-wrapper">
+            <h1 id="welcome">WELCOME TO YOUR ONLINE DAIRY</h1>
+            <div class="line"></div>
+            <div id="note">Everyone can have their own personal online diary or journal on the Internet - it's free at my-diary.org! We will host your journal online at no cost. Go ahead and create your own public or private diary today. Our focus is on security and privacy, and diaries are private by default.</div>
+            <a class="style-button" id="create">Create Note</a>
+        </div>
+        <div id="view-entry" class="center-panel">
+            <article>
+                <i class="time-wrapper"><h7 id="dairy-time"></h7></i>
+                <h1 id="dairy-subject"></h1>
+                <p class="font-color" id="dairy-main"></p>
+                <p class="btn-wrapper">
+                    <input id="article-edit" class="submit-btn btn-good" type="button" value="EDIT" onclick="">
+                    <input class="submit-btn btn-danger" type="button" value="DELETE" onclick="">
+                </p>
+            </article>
+        </div>
+    </div>
+    <div id="footer">
+        <p class="footer-text">Young Nwadike &copy; Andela bootcamp</p>
+    </div>
+    <!-- The Modal -->
+    <div id="dairy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><span class="font-color">New Entry</span></p>
+            <p>
+                <label for="my-text-field">Subject</label>
+                <input class="diary-input" id="my-text-field" type="text" maxlength="40" />
+            </p>
+            <p>
+                <label for="my-textarea">What do you think?</label>
+                <textarea id="my-textarea" class="diary-input" maxlength="250"></textarea>
+            </p>
+            <p class="btn-wrapper">
+                <input class="submit-btn btn-good" id="addEntry" type="button" value="ADD">
+            </p>
+        </div>
+    </div>
+    <!-- The Alert -->
+    <div id="alert-box" class="alert-modal">
+        <div class="alert-content">
+            <div class="alert-line"></div>
+            <p>
+                <span class="head" id="alert-data"></span>
+            </p>
+            <div class="alert-line"></div>
+            <p class="alert-btn-wrapper">
+                <input class="submit-btn btn-good" type="button" value="OK" onclick="alertBx.style.display = 'none'">
+            </p>
+        </div>
+    </div>
+    <!-- The Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+                <p><span class="head">Profile</span></p>
+                <table>
+                    <tr><td class="user-info">Name</td><td class="font-color">John Doe</td></tr>
+                    <tr><td class="user-info">Email</td><td class="font-color">johndoe@example.com</td></tr>
+                    <tr><td class="user-info">Total Entries</td><td class="font-color">6</td></tr>
+                </table>
+                <label id="reminder-btn" class="collapse"  for="opn"> CLICK TO ADD REMINDER</label>
+                <input id="opn" type="checkbox">
+                <div>
+                    <p>
+                        <label for="reminder-date">Reminder Date</label>
+                        <input class="diary-input" id="reminder-date" type="date" maxlength="40" />
+                    </p>
+                    <p>
+                        <label for="description">Description</label>
+                        <textarea id="description" class="diary-input" maxlength="250"></textarea>
+                    </p>
+                    <p class="btn-wrapper">
+                        <input class="submit-btn btn-good" type="button" value="ADD" onclick="">
+                    </p>
+                </div>
+
+                <div>
+                    <p class="font-color"><b>Reminders</b></p>
+                        <label class="collapse" for="_1"><span class="reminder-list">1.</span><span class="reminder-time">2018-4-20 3:27 PM</span><span class="reminder-desc">this is just a reminder</span></label>
+                        <input id="_1" type="checkbox">
+                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                        <label class="collapse" for="_2"><span class="reminder-list">2.</span><span class="reminder-time">2018-6-20 7:40 AM</span><span class="reminder-desc">this is just a reminder</span></label>
+                        <input id="_2" type="checkbox">
+                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                        <label class="collapse" for="_3"><span class="reminder-list">3.</span><span class="reminder-time">2018-4-20 1:34 PM</span><span class="reminder-desc">this is just a reminder</span></label>
+                        <input id="_3" type="checkbox">
+                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                        <label class="collapse" for="_4"><span class="reminder-list">4.</span><span class="reminder-time">2018-9-20 8:51 PM</span><span class="reminder-desc">this is just a reminder</span></label>
+                        <input id="_4" type="checkbox">
+                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                </div>
+            </p>
+           
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+</html>
