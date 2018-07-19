@@ -64,7 +64,7 @@ describe('Diary', () => {
           });
       });
       describe('GET /entries/<WrongEntryId>', () => {
-        ['200', '201', '202', '203', '204'].forEach((userId) => {
+        ['200', '201', '202', '203', '204', '205'].forEach((userId) => {
           it(`it should GET A single entry with given id ${userId}`, (done) => {
             chai.request('http://localhost:3000/api/v1')
               .get(`/entries/${userId}`)

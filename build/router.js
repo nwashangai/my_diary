@@ -15,5 +15,4 @@ var router = _express2.default.Router();
 router.get('/', _DiaryController2.default.getDiary);
 router.get('/entries', _DiaryController2.default.getDiary);
 router.get('/entries/:id', _DiaryController2.default.getDiary);
-router.post('/entries', _DiaryController2.default.setDiary);
 module.exports = router;
