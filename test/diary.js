@@ -35,4 +35,117 @@ describe('Diary', () => {
         });
     });
   });
+
+  describe('GET /entries/<entryId>', () => {
+    ['1', '2'].forEach((userId) => {
+      it(`it should GET A single entry with given id ${userId}`, (done) => {
+        chai.request('http://localhost:3000/api/v1')
+          .get(`/entries/${userId}`)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.type.should.equal('application/json');
+            res.body.should.have.property('subject');
+            done();
+          });
+      });
+    });
+  });
+
+  describe('GET /entries/<WrongEntryId>', () => {
+    ['200', '201', '202', '203', '204'].forEach((userId) => {
+      it(`it should GET A single entry with given id ${userId}`, (done) => {
+        chai.request('http://localhost:3000/api/v1')
+          .get(`/entries/${userId}`)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.type.should.equal('application/json');
+            res.body.should.have.property('warning');
+            done();
+          });
+      });
+    });
+  });
+
+  describe('POST /entries', () => {
+    it('it should create a new entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: 'foo', diary: 'bar' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('res');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: 'foo' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ diary: 'bar' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: 'foo', diary: '' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: '', diary: 'bar' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: ' ', diary: 'bar' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: 'foo', diary: ' ' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('it should reject the entry', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .post('/entries')
+        .send({ subject: ' ', diary: ' ' })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+  });
 });

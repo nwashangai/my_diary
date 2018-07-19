@@ -8,7 +8,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.getDiary = function (request, response) {
   if (request.params.id) {
-    response.status(200).json(_DiaryModel2.default.data[request.params.id] || { warning: 'no diary found' });
+    response.status(200).json(_DiaryModel2.default.data[request.params.id] || { warning: 'No entry found' });
   } else {
     response.status(200).json(_DiaryModel2.default.data);
   }
