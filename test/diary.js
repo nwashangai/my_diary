@@ -63,6 +63,20 @@ describe('Diary', () => {
             done();
           });
       });
+      describe('GET /entries/<WrongEntryId>', () => {
+        ['200', '201', '202', '203', '204'].forEach((userId) => {
+          it(`it should GET A single entry with given id ${userId}`, (done) => {
+            chai.request('http://localhost:3000/api/v1')
+              .get(`/entries/${userId}`)
+              .end((err, res) => {
+                res.should.have.status(200);
+                res.type.should.equal('application/json');
+                res.body.should.have.property('warning');
+                done();
+              });
+          });
+        });
+      });
     });
   });
 });
