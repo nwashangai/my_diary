@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <div class="tab form_div middle-align">
+            <div id="loginAlert" class="alert">
+                
+            </div>
+            <button class="tabIndex" onclick="openContent(event, 'login')">Login</button>
+            <button class="tabIndex" onclick="openContent(event, 'signup')">Sign Up</button>
+        </div>
+        <div id="login" class="tabcontent form_div" style="display: block;">
+            <p class="form_label">LOGIN FORM</p>
+            <form method="post" action="">
+                <p>
+                    <input id="lemail" type="text" placeholder="Enter Email">
+                </p>
+                <p>
+                    <input id="lpassword" type="password" placeholder="**********">
+                </p>
+                <p>
+                    <input type="button" value="LOGIN" onclick="RunLoginValidate()">
+                </p>
+            </form>
+        </div>
+        <div id="signup" class="tabcontent form_div">
+            <p class="form_label">SIGNUP FORM</p>
+            <form method="post" action="">
+                <p>
+                    <input id="sname" type="text" placeholder="Your Name">
+                </p>
+                <p>
+                    <input id="semail" type="text" placeholder="Your Email">
+                </p>
+                <p>
+                    <input id="spassword" type="password" placeholder="**********">
+                </p>
+                <p>
+                    <input type="button" value="SIGNUP" onclick="RunSignupValidate()">
+                </p>
+            </form>
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="assets/js/scripts.js"></script>
+</html>
