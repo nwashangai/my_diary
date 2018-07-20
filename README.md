@@ -1,7 +1,7 @@
 # my_diary
 
-[![Build Status](https://travis-ci.org/nwashangai/my_diary.svg?branch=master)](https://travis-ci.org/nwashangai/my_diary)
-[![Coverage Status](https://coveralls.io/repos/github/nwashangai/my_diary/badge.svg?branch=master)](https://coveralls.io/github/nwashangai/my_diary?branch=master)
+[![Build Status](https://travis-ci.org/nwashangai/my_diary.svg?branch=develope)](https://travis-ci.org/nwashangai/my_diary)
+[![Coverage Status](https://coveralls.io/repos/github/nwashangai/my_diary/badge.svg?branch=master)](https://coveralls.io/github/nwashangai/my_diary?branch=develope)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ad70ca3a7de1905fe026/maintainability)](https://codeclimate.com/github/nwashangai/my_diary/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ad70ca3a7de1905fe026/test_coverage)](https://codeclimate.com/github/nwashangai/my_diary/test_coverage)
 
