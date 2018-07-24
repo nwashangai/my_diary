@@ -5,46 +5,58 @@
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 </head>
 
-<body>
-    <div id="wrapper">
-
-        <div class="tab form_div middle-align">
-            <div id="loginAlert" class="alert">
-                
+<body id="bd">
+    <div id="main-index">
+        <div id="writeup-wrapper">
+            <div id="writeup">
+            <h1 class="center-align">Welcome To My Diary </h1><br/>
+            <span><h3 class="center-align">Where we host your journal and save your information. Everyone can have their own personal online diary or journal on the Internet - it's free at my-diary! We will host your
+            journal online at no cost. Go ahead and create your own public or private diary today. Our focus is on security and privacy,
+            and diaries are private by default.</h3></span>
             </div>
-            <button class="tabIndex" onclick="openContent(event, 'login')">Login</button>
-            <button class="tabIndex" onclick="openContent(event, 'signup')">Sign Up</button>
         </div>
-        <div id="login" class="tabcontent form_div" style="display: block;">
-            <p class="form_label">LOGIN FORM</p>
-            <form method="post" action="">
-                <p>
-                    <input id="lemail" type="text" placeholder="Enter Email">
-                </p>
-                <p>
-                    <input id="lpassword" type="password" placeholder="**********">
-                </p>
-                <p>
-                    <input type="button" value="LOGIN" onclick="RunLoginValidate()">
-                </p>
-            </form>
-        </div>
-        <div id="signup" class="tabcontent form_div">
-            <p class="form_label">SIGNUP FORM</p>
-            <form method="post" action="">
-                <p>
-                    <input id="sname" type="text" placeholder="Your Name">
-                </p>
-                <p>
-                    <input id="semail" type="text" placeholder="Your Email">
-                </p>
-                <p>
-                    <input id="spassword" type="password" placeholder="**********">
-                </p>
-                <p>
-                    <input type="button" value="SIGNUP" onclick="RunSignupValidate()">
-                </p>
-            </form>
+        <div id="wrapper">
+            <div id="login-content">
+            <div class="tab form_div middle-align">
+                <div id="loginAlert" class="alert">
+                    
+                </div>
+                <button class="tabIndex" onclick="openContent(event, 'login')">Login</button>
+                <button class="tabIndex" onclick="openContent(event, 'signup')">Sign Up</button>
+            </div>
+            <div id="login" class="tabcontent form_div" style="display: block;">
+                <p class="form_label">LOGIN FORM</p>
+                <form method="post" action="">
+                    <p>
+                        <input id="lemail" type="text" placeholder="Enter Email">
+                    </p>
+                    <p>
+                        <input id="lpassword" type="password" placeholder="**********">
+                    </p>
+                    <p>
+                        <input type="button" value="LOGIN" onclick="RunLoginValidate()">
+                    </p>
+                </form>
+            </div>
+            <div id="signup" class="tabcontent form_div">
+                <p class="form_label">SIGNUP FORM</p>
+                <form method="post" action="">
+                    <p>
+                        <input id="sname" type="text" placeholder="Your Name">
+                    </p>
+                    <p>
+                        <input id="semail" type="text" placeholder="Your Email">
+                    </p>
+                    <p>
+                        <input id="spassword" type="password" placeholder="**********">
+                    </p>
+                    <p>
+                        <input type="button" value="SIGNUP" onclick="RunSignupValidate()">
+                    </p>
+                </form>
+            </div>
+            </div>
+            <div id="empty"></div>
         </div>
 
     </div>

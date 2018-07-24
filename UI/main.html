@@ -2,16 +2,18 @@
 
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/icons.css" type="text/css" rel="stylesheet" />
 </head>
 
-<body>
-    <div id="header"><span class="navbar-brand" id="home">My Diary</span>
+<body id="main-body">
+    <div id="header"><span><i onclick="toggleMenu()" class="small-devices navbar-brand fa fa-align-justify"></i><span class="navbar-brand" id="home">My Diary</span></span>
         <span class="dropdown">
-            <span class="gear"></span>
+            <i class="gear fa fa-gear"></i>
             <span class="dropdown-content">
                 <a id="logout">Logout</a>
+                <a id="settings">Settings</a>
                 <a id="prf">Profile</a>
             </span>
         </span>
@@ -28,11 +30,11 @@
             <li class="side-item" onclick="getDairy('work')">Done with work</li>
         </ul>
     </div>
-    <div id="main">
+    <div id="main" tabindex="-1">
         <div class="box-in" id="welcome-wrapper">
             <h1 id="welcome">WELCOME TO YOUR ONLINE DAIRY</h1>
             <div class="line"></div>
-            <div id="note">Everyone can have their own personal online diary or journal on the Internet - it's free at my-diary.org! We will host your journal online at no cost. Go ahead and create your own public or private diary today. Our focus is on security and privacy, and diaries are private by default.</div>
+            <div id="note">Everyone can have their own personal online diary or journal on the Internet - it's free at my-diary! We will host your journal online at no cost. Go ahead and create your own public or private diary today. Our focus is on security and privacy, and diaries are private by default.</div>
             <a class="style-button" id="create">Create Note</a>
         </div>
         <div id="view-entry" class="center-panel">
@@ -46,9 +48,9 @@
                 </p>
             </article>
         </div>
-    </div>
-    <div id="footer">
-        <p class="footer-text">Young Nwadike &copy; Andela bootcamp</p>
+        <div id="footer">
+            <p class="footer-text">Young Nwadike &copy; Andela bootcamp</p>
+        </div>
     </div>
     <!-- The Modal -->
     <div id="dairy-modal" class="modal">
@@ -91,39 +93,85 @@
                     <tr><td class="user-info">Email</td><td class="font-color">johndoe@example.com</td></tr>
                     <tr><td class="user-info">Total Entries</td><td class="font-color">6</td></tr>
                 </table>
-                <label id="reminder-btn" class="collapse"  for="opn"> CLICK TO ADD REMINDER</label>
-                <input id="opn" type="checkbox">
+                <label id="bio-btn" class="collapse"  for="bio"> CLICK TO EDIT BIO</label>
+                <input id="bio" type="checkbox">
                 <div>
                     <p>
-                        <label for="reminder-date">Reminder Date</label>
-                        <input class="diary-input" id="reminder-date" type="date" maxlength="40" />
-                    </p>
-                    <p>
-                        <label for="description">Description</label>
-                        <textarea id="description" class="diary-input" maxlength="250"></textarea>
+                        <label for="description">ABOUT ME</label>
+                        <textarea id="information" class="diary-input" maxlength="250"></textarea>
                     </p>
                     <p class="btn-wrapper">
-                        <input class="submit-btn btn-good" type="button" value="ADD" onclick="">
+                        <input class="submit-btn btn-good" type="button" value="SAVE" onclick="">
                     </p>
                 </div>
 
                 <div>
-                    <p class="font-color"><b>Reminders</b></p>
-                        <label class="collapse" for="_1"><span class="reminder-list">1.</span><span class="reminder-time">2018-4-20 3:27 PM</span><span class="reminder-desc">this is just a reminder</span></label>
-                        <input id="_1" type="checkbox">
-                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
-                        <label class="collapse" for="_2"><span class="reminder-list">2.</span><span class="reminder-time">2018-6-20 7:40 AM</span><span class="reminder-desc">this is just a reminder</span></label>
-                        <input id="_2" type="checkbox">
-                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
-                        <label class="collapse" for="_3"><span class="reminder-list">3.</span><span class="reminder-time">2018-4-20 1:34 PM</span><span class="reminder-desc">this is just a reminder</span></label>
-                        <input id="_3" type="checkbox">
-                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
-                        <label class="collapse" for="_4"><span class="reminder-list">4.</span><span class="reminder-time">2018-9-20 8:51 PM</span><span class="reminder-desc">this is just a reminder</span></label>
-                        <input id="_4" type="checkbox">
-                        <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                    <p class="font-color"><b>ABOUT ME</b></p>
+                        <p id="me-content">I'm a very easy going person who loves and enjoy the simple pleasures in life. Down to earth, very caring, thoughtful,understanding
+                        and faithful person.I'm an honest, trustworthy, dedicated woman with a good heart and soul.</p>
                 </div>
             </p>
            
+        </div>
+    </div>
+    <!-- The settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>
+                <span class="head">Settings</span>
+            </p>
+            <label id="reminder-btn" class="collapse" for="opn"> CLICK TO ADD REMINDER</label>
+            <input id="opn" type="checkbox">
+            <div>
+                <p>
+                    <label for="reminder-date">Reminder Date</label>
+                    <input class="diary-input" id="reminder-date" type="date" maxlength="40" />
+                </p>
+                <p>
+                    <label for="description">Description</label>
+                    <textarea id="description" class="diary-input" maxlength="250"></textarea>
+                </p>
+                <p class="btn-wrapper">
+                    <input class="submit-btn btn-good" type="button" value="ADD" onclick="">
+                </p>
+            </div>
+    
+            <div>
+                <p class="font-color">
+                    <b>Reminders</b>
+                </p>
+                <label class="collapse" for="_1">
+                    <span class="reminder-list">1.</span>
+                    <span class="reminder-time">2018-4-20 3:27 PM</span>
+                    <span class="reminder-desc">this is just a reminder</span>
+                </label>
+                <input id="_1" type="checkbox">
+                <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                <label class="collapse" for="_2">
+                    <span class="reminder-list">2.</span>
+                    <span class="reminder-time">2018-6-20 7:40 AM</span>
+                    <span class="reminder-desc">this is just a reminder</span>
+                </label>
+                <input id="_2" type="checkbox">
+                <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                <label class="collapse" for="_3">
+                    <span class="reminder-list">3.</span>
+                    <span class="reminder-time">2018-4-20 1:34 PM</span>
+                    <span class="reminder-desc">this is just a reminder</span>
+                </label>
+                <input id="_3" type="checkbox">
+                <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+                <label class="collapse" for="_4">
+                    <span class="reminder-list">4.</span>
+                    <span class="reminder-time">2018-9-20 8:51 PM</span>
+                    <span class="reminder-desc">this is just a reminder</span>
+                </label>
+                <input id="_4" type="checkbox">
+                <div class="font-color">this is just a continuation of the reminder you can check it out</div>
+            </div>
+            </p>
+    
         </div>
     </div>
 </body>
