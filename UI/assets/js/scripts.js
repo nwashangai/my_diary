@@ -95,7 +95,6 @@ let getDairy = (identifier) => {
     document.getElementById("dairy-subject").innerHTML = item.subject
     document.getElementById("dairy-main").innerHTML = item.dairy
     document.getElementById('view-entry').style.display = "block"
-    document.getElementById("sidebar-left").css({"height": document.getElementById("main").height()})
     document.getElementById('main').focus()
 
 }
