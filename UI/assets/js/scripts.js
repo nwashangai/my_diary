@@ -95,8 +95,10 @@ let getDairy = (identifier) => {
     document.getElementById("dairy-subject").innerHTML = item.subject
     document.getElementById("dairy-main").innerHTML = item.dairy
     document.getElementById('view-entry').style.display = "block"
-    document.getElementById('main').focus()
-
+    if (window.matchMedia("(max-width: 1000px)").matches) {
+        document.getElementById('main').focus()
+    }
+    
 }
 
 homeBtn.onclick = () => {
