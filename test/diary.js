@@ -24,6 +24,19 @@ describe('Diary', () => {
     });
   });
 
+  describe('/GET api/v1/', () => {
+    it('it should GET all the diaries', (done) => {
+      chai.request('http://localhost:3000/api/v1')
+        .get('/')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.type.should.equal('application/json');
+          res.body.should.have.property('error');
+          done();
+        });
+    });
+  });
+
   describe('/GET api/v1/entries', () => {
     it('it should GET all the diaries', (done) => {
       chai.request('http://localhost:3000/api/v1')
@@ -31,6 +44,8 @@ describe('Diary', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.type.should.equal('application/json');
+          res.body.should.have.property('status');
+          res.body.should.have.property('entries');
           done();
         });
     });
@@ -44,7 +59,8 @@ describe('Diary', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
-            res.body.should.have.property('subject');
+            res.body.should.have.property('status');
+            res.body.should.have.property('entry');
             done();
           });
       });
@@ -59,7 +75,8 @@ describe('Diary', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
-            res.body.should.have.property('warning');
+            res.body.should.have.property('status');
+            res.body.should.have.property('message');
             done();
           });
       });
@@ -73,7 +90,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('res');
+          res.body.should.have.property('status');
+          res.body.should.have.property('entry');
           done();
         });
     });
@@ -83,6 +101,7 @@ describe('Diary', () => {
         .send({ subject: 'foo' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -93,6 +112,7 @@ describe('Diary', () => {
         .send({ diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -103,6 +123,7 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -113,6 +134,7 @@ describe('Diary', () => {
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -123,6 +145,7 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -133,6 +156,7 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -143,6 +167,7 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
         });
@@ -156,7 +181,8 @@ describe('Diary', () => {
         .send({ subject: 'foo update', diary: 'bar update' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('res');
+          res.body.should.have.property('status');
+          res.body.should.have.property('entry');
           done();
         });
     });
@@ -166,7 +192,8 @@ describe('Diary', () => {
         .send({ subject: 'foo' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -176,7 +203,8 @@ describe('Diary', () => {
         .send({ diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -186,7 +214,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -196,7 +225,8 @@ describe('Diary', () => {
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -206,7 +236,8 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -216,7 +247,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -226,7 +258,8 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('warning');
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
           done();
         });
     });
@@ -238,7 +271,8 @@ describe('Diary', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
-            res.body.should.have.property('error');
+            res.body.should.have.property('status');
+            res.body.should.have.property('message');
             done();
           });
       });
