@@ -1,10 +1,22 @@
-body {
+html {
+    height: 100%;
+}
+body{
     margin: 0 auto;
     padding: 0px;
     text-align: center;
     width: 100%;
     font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-    background-color: #ECF0F1;
+}
+#bd{
+    /*background-color: #ECF0F1;*/
+    background-image: url('../images/cowries.jpeg');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+#main-body {
+    background-color: rgb(85, 83, 95);
 }
 p {
     margin-bottom: 1rem;
@@ -100,12 +112,151 @@ li:hover {
 .font-color {
     color: rgb(85, 83, 95);
 }
-#wrapper {
-    margin: 0 auto;
-    padding: 0px;
-    text-align: center;
-    width: 995px;
+@media only screen and (min-width: 360px) and (max-width: 904px) {
+    #writeup-wrapper {
+        color: white;
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        width: 100%
+    }
+    #writeup {
+        margin: 0 auto;
+    }
+    #main-index {
+        background-color: transparent !important;
+        width: 100%;
+        text-align: center;
+    }
+    #login-content {
+        float: left;
+        margin: auto;
+        width: 100%;
+        padding-bottom: 20px;
+    }
+     #wrapper {
+         width: 100%;
+     }
+
+     #wrapper h1 {
+         font-size: 30px;
+     }
+
+     .form_div {
+         width: 50%;
+         margin-left: 25%;
+         padding-left: 0px;
+         padding-right: 0px;
+     }
+
+     .form_div input[type="text"],
+     input[type="password"] {
+         width: 80%;
+     }
+
+     .form_div textarea {
+         width: 80%;
+     }
+
+     .form_div input[type="button"] {
+         width: 80%;
+     }
 }
+@media only screen and (min-width: 904px) and (max-width: 1000px) {
+    #writeup-wrapper, #wrapper, #empty {
+        display:inline;
+    }
+    #writeup-wrapper {
+        color: white;
+        float: left;
+        margin: 0 auto;
+        padding: 0px;
+        text-align: center;
+        width: 50%
+    }
+    #writeup {
+        margin: 0px;
+        padding-top: 70px;
+    }
+    #main-index {
+        background-color: transparent !important;
+        width: 100%;
+        text-align: center;
+    }
+    #login-content {
+        float: left;
+        margin: 0 auto;
+        width: 45%;;
+    }
+     #wrapper {
+         width: 45%;
+     }
+
+     #wrapper h1 {
+         font-size: 30px;
+     }
+    #empty {
+        width: 5px;
+    }
+
+     .form_div {
+         width: 50%;
+         margin-left: 25%;
+         padding-left: 0px;
+         padding-right: 0px;
+     }
+
+     .form_div input[type="text"],
+     input[type="password"] {
+         width: 80%;
+     }
+
+     .form_div textarea {
+         width: 80%;
+     }
+
+     .form_div input[type="button"] {
+         width: 80%;
+     }
+}
+#main-index {
+    background-color: transparent !important;
+    width: 100%;
+    text-align: center;
+}
+@media only screen and (min-width: 1000px) {
+    #writeup-wrapper, #wrapper, #empty {
+        display:inline;
+    }
+    #writeup-wrapper {
+        color: white;
+        float: left;
+        margin: 0 auto;
+        padding: 0px;
+        text-align: center;
+        width: 50%
+    }
+    #writeup {
+        margin: 50px;
+        padding-top: 50px;
+    }
+    #login-content {
+        float: left;
+        margin: auto;
+    }
+    #wrapper {
+        float: right;
+        margin: 0 auto;
+        padding: 0px;
+        text-align: center;
+        width: 40%;
+    }
+    #empty {
+        width: 10px;
+    }
+}
+
 
 #wrapper h1 {
     margin-top: 50px;
@@ -117,9 +268,13 @@ li:hover {
     font-size: 18px;
 }
 
+.center-align {
+    padding: 10px;
+    width: 80%;
+}
 .form_div {
     width: 330px;
-    margin-left: 320px;
+    margin-left: 0 auto;
     padding: 10px;
     background-color: #fcf9f9;
 }
@@ -160,28 +315,7 @@ input[type="button"]:hover {
 }
 
 @media only screen and (min-width:700px) and (max-width:995px) {
-    #wrapper {
-        width: 100%;
-    }
-    #wrapper h1 {
-        font-size: 30px;
-    }
-    .form_div {
-        width: 50%;
-        margin-left: 25%;
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-    .form_div input[type="text"],
-    input[type="password"] {
-        width: 80%;
-    }
-    .form_div textarea {
-        width: 80%;
-    }
-    .form_div input[type="button"] {
-        width: 80%;
-    }
+   
 }
 
 @media only screen and (min-width:400px) and (max-width:699px) {
@@ -227,6 +361,220 @@ input[type="button"]:hover {
 }
 
 /* Main App */
+@media only screen and (min-width: 360px) and (max-width: 904px) {
+    article {
+        float: left;
+        text-align: justify;
+        border-radius: 10px;
+        padding: 20px;
+        width: 80%;
+        background-color: white;
+    }
+    .center-panel {
+        padding-top: 110px;
+        padding-left: 50;
+        padding-right: 0;
+    }
+    #main {
+        float: left;
+        width: 100%;
+        background-color: rgb(240, 240, 240);/*background-color: #ECF0F1;*/
+        background-image: url('../images/diary.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 25px;
+        padding-bottom: 30px;
+    }
+
+    #sidebar-left {
+        display: none;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        color: white;
+        padding-top: 15px;
+        float: left;
+        width: 100%;
+        background-color: rgb(85, 83, 95);
+    }
+    /* Modal Content */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border-radius: 10px;
+        padding: 20px;
+        overflow: auto;
+        max-height: 500px;
+        border: 1px solid #888;
+        width: 90%;
+    }
+    /* Modal style */
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 0px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    #header {
+        position: fixed;
+        top: 0px;
+        background-color: #ccc;
+        width: 100%;
+        height: 70px;
+        text-align: center;
+    }
+}
+@media only screen and (min-width: 904px) and (max-width: 1000px) {
+    article {
+        float: left;
+        text-align: justify;
+        border-radius: 10px;
+        padding: 20px;
+        width: 85%;
+        background-color: white;
+    }
+    .center-panel {
+        padding-top: 110px;
+        padding-left: 50;
+        padding-right: 0;
+    }
+    #main {
+        float: left;
+        width: 100%;
+        background-color: rgb(240, 240, 240);
+        background-color: rgb(240, 240, 240);/*background-color: #ECF0F1;*/
+        background-image: url('../images/diary.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 25px;
+        padding-bottom: 30px;
+    }
+
+    #sidebar-left {
+        display: none;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        color: white;
+        padding-top: 15px;
+        float: left;
+        width: 100%;
+        background-color: rgb(85, 83, 95);
+    }
+    /* Modal Content */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border-radius: 10px;
+        padding: 20px;
+        overflow: auto;
+        max-height: 500px;
+        border: 1px solid #888;
+        width: 40%;
+    }
+    /* Modal style */
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 0px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    #header {
+        position: fixed;
+        top: 0px;
+        background-color: #ccc;
+        width: 100%;
+        height: 70px;
+        text-align: center;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    article {
+        float: left;
+        text-align: justify;
+        border-radius: 10px;
+        padding: 20px;
+        width: 70%;
+        background-color: white;
+    }
+    .center-panel {
+        padding-top: 110px;
+        padding-left: 180px;
+    }
+    .small-devices {
+        display: none;
+    }
+    #main {
+        float: left;
+        width: 85%;
+        background-color: rgb(240, 240, 240);/*background-color: #ECF0F1;*/
+        background-image: url('../images/diary.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 25px;
+        padding-bottom: 30px;
+    }
+
+    #sidebar-left {
+        padding-left: 0.5%;
+        padding-right: 0.5%;
+        color: white;
+        padding-top: 15px;
+        float: left;
+        width: 14%;
+        background-color: rgb(85, 83, 95);
+    }
+    /* Modal Content */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border-radius: 10px;
+        padding: 20px;
+        overflow: auto;
+        max-height: 500px;
+        border: 1px solid #888;
+        width: 40%;
+    }
+    /* Modal style */
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 110px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    #header {
+        background-color: #ccc;
+        width: 100%;
+        height: 70px;
+        text-align: center;
+    }
+}
 .navbar-brand {
     cursor: pointer;
     float: left;
@@ -272,27 +620,8 @@ input[type="button"]:hover {
 #article-edit {
     margin-right: 9px;
 }
- #header {
-     background-color: #ccc;
-     width: 100%;
-     height: 70px;
-     text-align: center;
- }
 
- #sidebar-left {
-     padding: 0.5%;
-     color: white;
-     padding-top: 15px;
-     float: left;
-     width: 14%;
-     background-color: rgb(85, 83, 95);
- }
 
- #main {
-     float: left;
-     width: 85%;
-     background-color: rgb(240, 240, 240);
- }
  .box-in {
      margin: 30px;
      margin-top: 100px;
@@ -339,10 +668,6 @@ input[type="button"]:hover {
     text-align: center;
     width: 196px;
 }
- .center-panel {
-     padding-top: 110px;
-     padding-left: 180px;
- }
  #view-entry {
      display: none;
  }
@@ -354,6 +679,8 @@ input[type="button"]:hover {
  }
 
  #footer {
+     position: fixed;
+     bottom: 0;
      clear: both;
      height: 50px;
      width: 100%;
@@ -363,13 +690,13 @@ input[type="button"]:hover {
 
  .footer-text {
      color: rgb(85, 83, 95);
-     padding-top: 15px;
  }
 
  #sidebar-left,
  #main,
  #sidebar-right {
-     min-height: 535px
+     min-height: 592px;
+     overflow: auto;
  }
 
  /* dropdwon style*/
@@ -451,17 +778,6 @@ input[type="button"]:hover {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    border-radius: 10px;
-    padding: 20px;
-    overflow: auto;
-    max-height: 500px;
-    border: 1px solid #888;
-    width: 40%;
-}
 
 /* The Close Button */
 .close {
