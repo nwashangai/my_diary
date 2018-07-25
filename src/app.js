@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 app.use('/api/v1', router);
 app.use((req, res, next) => {
   res.status(404);
-  // respond with json
   res.send({ error: '404 Sorry the page has not yet been defined try /api/v1/' });
 });
 
 app.listen(PORT || 3000);
+
 module.exports = app; // for testing
