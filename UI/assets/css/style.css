@@ -1,0 +1,936 @@
+html {
+    height: 100%;
+}
+body{
+    margin: 0 auto;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+    font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+}
+#bd{
+    /*background-color: #ECF0F1;*/
+    background-image: url('../images/cowries.jpeg');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+#main-body {
+    background-color: rgb(85, 83, 95);
+}
+p {
+    margin-bottom: 1rem;
+}
+li {
+    text-align: left;
+    padding: 3px;
+    font-size: 17px;
+}
+
+a {
+    cursor: pointer;
+}
+article {
+    float: left;
+    text-align: justify;
+    border-radius: 10px;
+    padding: 20px;
+    width: 70%;
+    background-color: white;
+}
+
+li:hover {
+    color: #18c4b5;
+    cursor: pointer;
+}
+
+/* Style the tab */
+
+.tab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    width: 330px;
+    margin-top: 120px;
+}
+
+/* Style the buttons inside the tab */
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50%;
+    padding: 15px 18px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+
+.tabcontent {
+    display: none;
+}
+
+/*  Style alert btn */
+
+.alert {
+    padding: 20px;
+    background-color: #f58e89;
+    color: white;
+    display: none;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: #7F8C8D;
+}
+
+.font-color {
+    color: rgb(85, 83, 95);
+}
+@media only screen and (min-width: 360px) and (max-width: 904px) {
+    #writeup-wrapper {
+        color: white;
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        width: 100%
+    }
+    #writeup {
+        margin: 0 auto;
+    }
+    #main-index {
+        background-color: transparent !important;
+        width: 100%;
+        text-align: center;
+    }
+    #login-content {
+        float: left;
+        margin: auto;
+        width: 100%;
+        padding-bottom: 20px;
+    }
+     #wrapper {
+         width: 100%;
+     }
+
+     #wrapper h1 {
+         font-size: 30px;
+     }
+
+     .form_div {
+         width: 50%;
+         margin-left: 25%;
+         padding-left: 0px;
+         padding-right: 0px;
+     }
+
+     .form_div input[type="text"],
+     input[type="password"] {
+         width: 80%;
+     }
+
+     .form_div textarea {
+         width: 80%;
+     }
+
+     .form_div input[type="button"] {
+         width: 80%;
+     }
+}
+@media only screen and (min-width: 904px) and (max-width: 1000px) {
+    #writeup-wrapper, #wrapper, #empty {
+        display:inline;
+    }
+    #writeup-wrapper {
+        color: white;
+        float: left;
+        margin: 0 auto;
+        padding: 0px;
+        text-align: center;
+        width: 50%
+    }
+    #writeup {
+        margin: 0px;
+        padding-top: 70px;
+    }
+    #main-index {
+        background-color: transparent !important;
+        width: 100%;
+        text-align: center;
+    }
+    #login-content {
+        float: left;
+        margin: 0 auto;
+        width: 45%;;
+    }
+     #wrapper {
+         width: 45%;
+     }
+
+     #wrapper h1 {
+         font-size: 30px;
+     }
+    #empty {
+        width: 5px;
+    }
+
+     .form_div {
+         width: 50%;
+         margin-left: 25%;
+         padding-left: 0px;
+         padding-right: 0px;
+     }
+
+     .form_div input[type="text"],
+     input[type="password"] {
+         width: 80%;
+     }
+
+     .form_div textarea {
+         width: 80%;
+     }
+
+     .form_div input[type="button"] {
+         width: 80%;
+     }
+}
+#main-index {
+    background-color: transparent !important;
+    width: 100%;
+    text-align: center;
+}
+@media only screen and (min-width: 1000px) {
+    #writeup-wrapper, #wrapper, #empty {
+        display:inline;
+    }
+    #writeup-wrapper {
+        color: white;
+        float: left;
+        margin: 0 auto;
+        padding: 0px;
+        text-align: center;
+        width: 50%
+    }
+    #writeup {
+        margin: 50px;
+        padding-top: 50px;
+    }
+    #login-content {
+        float: left;
+        margin: auto;
+    }
+    #wrapper {
+        float: right;
+        margin: 0 auto;
+        padding: 0px;
+        text-align: center;
+        width: 40%;
+    }
+    #empty {
+        width: 10px;
+    }
+}
+
+
+#wrapper h1 {
+    margin-top: 50px;
+    font-size: 45px;
+    color: #424949;
+}
+
+#wrapper h1 p {
+    font-size: 18px;
+}
+
+.center-align {
+    padding: 10px;
+    width: 80%;
+}
+.form_div {
+    width: 330px;
+    margin-left: 0 auto;
+    padding: 10px;
+    background-color: #fcf9f9;
+}
+
+.form_div .form_label {
+    margin: 15px;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(85, 83, 95);
+    text-decoration: none;
+}
+
+.form_div input[type="text"],
+input[type="password"] {
+    width: 230px;
+    height: 40px;
+    border-radius: 2px;
+    font-size: 17px;
+    padding-left: 5px;
+    border: 1px solid #7F8C8D;
+}
+
+.form_div input[type="button"] {
+    width: 230px;
+    height: 40px;
+    border: none;
+    border-radius: 2px;
+    font-size: 17px;
+    background-color: #7F8C8D;
+    /*border-bottom: 3px solid #616A6B;*/
+    color: white;
+    font-weight: bold;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+}
+
+@media only screen and (min-width:700px) and (max-width:995px) {
+   
+}
+
+@media only screen and (min-width:400px) and (max-width:699px) {
+    #wrapper {
+        width: 100%;
+    }
+    #wrapper h1 {
+        font-size: 30px;
+    }
+    .form_div {
+        width: 60%;
+        margin-left: 20%;
+    }
+    .form_div input[type="text"],
+    input[type="password"] {
+        width: 80%;
+    }
+    .form_div input[type="button"] {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width:100px) and (max-width:399px) {
+    #wrapper {
+        width: 100%;
+    }
+    #wrapper h1 {
+        font-size: 25px;
+    }
+    .form_div {
+        width: 90%;
+        margin-left: 5%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .form_div input[type="text"],
+    input[type="password"] {
+        width: 80%;
+    }
+    .form_div input[type="button"] {
+        width: 80%;
+    }
+}
+
+/* Main App */
+@media only screen and (min-width: 360px) and (max-width: 904px) {
+    article {
+        float: left;
+        text-align: justify;
+        border-radius: 10px;
+        padding: 20px;
+        width: 80%;
+        background-color: white;
+    }
+    .center-panel {
+        padding-top: 110px;
+        padding-left: 50;
+        padding-right: 0;
+    }
+    #main {
+        float: left;
+        width: 100%;
+        background-color: rgb(240, 240, 240);/*background-color: #ECF0F1;*/
+        background-image: url('../images/diary.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 25px;
+        padding-bottom: 30px;
+    }
+
+    #sidebar-left {
+        display: none;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        color: white;
+        padding-top: 15px;
+        float: left;
+        width: 100%;
+        background-color: rgb(85, 83, 95);
+    }
+    /* Modal Content */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border-radius: 10px;
+        padding: 20px;
+        overflow: auto;
+        max-height: 500px;
+        border: 1px solid #888;
+        width: 90%;
+    }
+    /* Modal style */
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 0px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    #header {
+        position: fixed;
+        top: 0px;
+        background-color: #ccc;
+        width: 100%;
+        height: 70px;
+        text-align: center;
+    }
+}
+@media only screen and (min-width: 904px) and (max-width: 1000px) {
+    article {
+        float: left;
+        text-align: justify;
+        border-radius: 10px;
+        padding: 20px;
+        width: 85%;
+        background-color: white;
+    }
+    .center-panel {
+        padding-top: 110px;
+        padding-left: 50;
+        padding-right: 0;
+    }
+    #main {
+        float: left;
+        width: 100%;
+        background-color: rgb(240, 240, 240);
+        background-color: rgb(240, 240, 240);/*background-color: #ECF0F1;*/
+        background-image: url('../images/diary.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 25px;
+        padding-bottom: 30px;
+    }
+
+    #sidebar-left {
+        display: none;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        color: white;
+        padding-top: 15px;
+        float: left;
+        width: 100%;
+        background-color: rgb(85, 83, 95);
+    }
+    /* Modal Content */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border-radius: 10px;
+        padding: 20px;
+        overflow: auto;
+        max-height: 500px;
+        border: 1px solid #888;
+        width: 40%;
+    }
+    /* Modal style */
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 0px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    #header {
+        position: fixed;
+        top: 0px;
+        background-color: #ccc;
+        width: 100%;
+        height: 70px;
+        text-align: center;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    article {
+        float: left;
+        text-align: justify;
+        border-radius: 10px;
+        padding: 20px;
+        width: 70%;
+        background-color: white;
+    }
+    .center-panel {
+        padding-top: 110px;
+        padding-left: 180px;
+    }
+    .small-devices {
+        display: none;
+    }
+    #main {
+        float: left;
+        width: 85%;
+        background-color: rgb(240, 240, 240);/*background-color: #ECF0F1;*/
+        background-image: url('../images/diary.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin-bottom: 25px;
+        padding-bottom: 30px;
+    }
+
+    #sidebar-left {
+        padding-left: 0.5%;
+        padding-right: 0.5%;
+        color: white;
+        padding-top: 15px;
+        float: left;
+        width: 14%;
+        background-color: rgb(85, 83, 95);
+    }
+    /* Modal Content */
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border-radius: 10px;
+        padding: 20px;
+        overflow: auto;
+        max-height: 500px;
+        border: 1px solid #888;
+        width: 40%;
+    }
+    /* Modal style */
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 110px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%; 
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    #header {
+        background-color: #ccc;
+        width: 100%;
+        height: 70px;
+        text-align: center;
+    }
+}
+.navbar-brand {
+    cursor: pointer;
+    float: left;
+    height: 40px;
+    color: rgb(85, 83, 95);
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.head {
+    font-weight: bold;
+    color: rgb(85, 83, 95);
+}
+.submit-btn {
+    min-width: 80px;
+    padding: 7px;
+    border: 0px;
+    font-size: 17px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-good {
+    background-color: #7F8C8D;
+}
+
+.btn-danger {
+    background-color: #e63731;
+}
+
+.btn-wrapper {
+    text-align: right;
+    padding-right: 40px;
+}
+
+.alert-btn-wrapper {
+    text-align: center;
+}
+
+#article-edit {
+    margin-right: 9px;
+}
+
+
+ .box-in {
+     margin: 30px;
+     margin-top: 100px;
+     background: rgba(85, 83, 95, 0.55);
+     padding: 20px;
+     color: white;
+     border: 1px solid rgba(255, 255, 255, 0.55);
+     border-radius: 5px;
+     overflow: hidden;
+ }
+ #welcome {
+     font-weight: 300;
+     font-size: 40px;
+ }
+ #note {
+     padding: 20px;
+     width: 90%;
+     padding-left: 45px;
+ }
+ .line {
+     height: 1px;
+     width: 350px;
+     margin: 20px auto;
+     background: white;
+ }
+ .alert-line {
+    height: 1px;
+    width: 200px;
+    margin: 20px auto;
+    background: rgba(85, 83, 95, 0.55);
+ }
+ .style-button {
+    background: rgba(255, 255, 255, 0) none repeat scroll 0 0;
+    border: 2px solid white;
+    border-radius: 5px;
+    clear: both;
+    color: white;
+    display: block;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 29px;
+    margin: 15px auto 10px;
+    padding: 10px 20px;
+    text-align: center;
+    width: 196px;
+}
+ #view-entry {
+     display: none;
+ }
+ .time-wrapper {
+     font-size: 13px;
+     padding-top: 0px;
+     float: right;
+     color: #7F8C8D;
+ }
+
+ #footer {
+     position: fixed;
+     bottom: 0;
+     clear: both;
+     height: 50px;
+     width: 100%;
+     text-align: center;
+     background-color: #ccc;
+ }
+
+ .footer-text {
+     color: rgb(85, 83, 95);
+ }
+
+ #sidebar-left,
+ #main,
+ #sidebar-right {
+     min-height: 592px;
+     overflow: auto;
+ }
+
+ /* dropdwon style*/
+
+ .dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #f1f1f1;
+     border-radius: 5px;
+     min-width: 140px;
+     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+     z-index: 1;
+     top: 60px;
+     float: right;
+     right: 8px;
+ }
+
+ .dropdown-content > :first-child {
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+ }
+
+ .dropdown-content > :last-child {
+     border-bottom-left-radius: 5px;
+     border-bottom-right-radius: 5px;
+ }
+
+ .dropdown-content a {
+     color: black;
+     padding: 12px 16px;
+     text-decoration: none;
+     display: block;
+ }
+
+ .dropdown-content a:hover {
+     background-color: #ddd;
+ }
+
+ .dropdown:hover .dropdown-content {
+     display: block;
+ }
+
+ .dropdown:hover .dropbtn {
+     background-color: #3e8e41;
+ }
+
+ .dropdown-content:before {
+     content: "";
+     position: absolute;
+     right: 20px;
+     top: -10px;
+     width: 0;
+     height: 0;
+     border-style: solid;
+     border-width: 0 10px 10px 10px;
+     border-color: transparent transparent #f1f1f1 transparent;
+     z-index: 9999;
+ }
+
+ .user-info {
+     padding: 10px;
+     font-weight: bold;
+     min-width: 150px;
+ }
+
+ /* Modal style */
+ /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 110px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+.alert-modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    padding-top: 200px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0);
+}
+
+/* Modal Content */
+.alert-content {
+    background-color: #fefefe;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px;
+    overflow: auto;
+    min-height: 50px;
+    border: 1px solid #888;
+    width: 20%;
+}
+
+
+/* form items */
+
+label {
+    float: left;
+    color: #666;
+    padding-right: 10px;
+    padding-top: 10px;
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.diary-input,
+textarea {
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    padding: .5rem;
+    min-width: 500;
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: .3125rem;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+    border-color: #666;
+    box-shadow: 0 0 0 .25rem #eee;
+}
+
+textarea {
+    /*min-width: 20rem;*/
+    min-height: 7rem;
+    min-width: 500%;
+}
+
+/* tooltip style*/
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted rgb(36, 33, 33); /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    opacity: 0.5;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;/* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+    opacity: 0.5;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* collapsible */
+.collapse{
+  text-align: center;
+  font-weight: bold;
+  width: 97%;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  display: block;
+  background: #ccc;
+}
+.reminder-list {
+    width: 8%;
+    float: left;
+}
+.reminder-time {
+    width: 30%;
+    float: left;
+}
+.reminder-desc {
+    width: 62%;
+    float: left;
+}
+.collapse:hover {
+    background: rgb(240, 240, 240)
+}
+.collapse + input{
+  display: none; /* hide the checkboxes */
+}
+.collapse + input + div{
+  display:none;
+}
+.collapse + input:checked + div{
+  display:block;
+}
