@@ -98,7 +98,6 @@ let getDairy = (identifier) => {
     if (window.matchMedia("(max-width: 1000px)").matches) {
         document.getElementById('main').focus()
     }
-    
 }
 
 homeBtn.onclick = () => {
