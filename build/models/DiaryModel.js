@@ -87,3 +87,15 @@ exports.addEntry = async function (userData) {
     return { status: 'error', message: error };
   }
 };
+
+exports.updateDiary = async function (userData) {
+  try {
+    // SQL Query > Insert Data
+    var _ref3 = await query('UPDATE diary SET subject = \'' + userData.subject + '\', diary = \'' + userData.diary + '\' WHERE id = ' + userData.id),
+        res = _ref3.res;
+
+    return { status: 'success', message: res };
+  } catch (error) {
+    return { status: 'error', message: error };
+  }
+};

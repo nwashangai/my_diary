@@ -61,7 +61,7 @@ describe('Diary', () => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
             res.body.should.have.property('status');
-            res.body.should.have.property('message');
+            res.body.should.have.property('entry');
             done();
           });
       });
