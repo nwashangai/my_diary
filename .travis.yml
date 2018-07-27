@@ -1,13 +1,14 @@
 services:
   - postgresql
-addons:
-  postgresql: "6.4"
+dist: trusty
 language: node_js
 node_js:
   - "stable"
 cache:
   directories:
     - "node_modules"
+addons:
+  postgresql: "6.4"
 before_script:
   - travis_wait 30 yarn install
   - psql -c 'create database myDiary;' -U postgres
