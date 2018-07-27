@@ -9,9 +9,9 @@ cache:
 before_script:
   - travis_wait 30 yarn install
   - psql -c 'create database myDiary;' -U postgres
-  - node build/models/database.js
   - travis_wait npm install
 script:
+  - node build/models/database.js
   - ./node_modules/mocha/bin/mocha  --exit
 after_success:
   - npm run coveralls
