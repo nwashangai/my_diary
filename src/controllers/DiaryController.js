@@ -94,14 +94,16 @@ exports.getDiary = (request, response) => {
 
 exports.setDiary = (request, response) => {
   if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
-    response.json({ status: 'error', message: 'sorry please provide all fields' });
+    response.status(406).json({ status: 'error', message: 'sorry please provide all fields' });
   } else {
-    const userID = DiaryModel.data.length + 1;
-    const entry = request.body;
-    entry.entryID = userID;
-    entry.date = new Date();
-    DiaryModel.data.push(entry);
-    response.json({ status: 'success', entry: search(userID, DiaryModel.data) });
+    const userData = { userId: request.decoded.userID, subject: request.body.subject, diary: request.body.diary };
+    DiaryModel.addEntry(userData).then((res) => {
+      if (res.status === 'success') {
+        response.status(200).json({ status: 'success', message: 'Entry saved successfully' });
+      } else {
+        response.status(406).json({ status: 'error', message: res });
+      }
+    });
   }
 }
 

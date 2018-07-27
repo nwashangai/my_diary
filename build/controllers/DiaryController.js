@@ -109,14 +109,16 @@ exports.getDiary = function (request, response) {
 
 exports.setDiary = function (request, response) {
   if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
-    response.json({ status: 'error', message: 'sorry please provide all fields' });
+    response.status(406).json({ status: 'error', message: 'sorry please provide all fields' });
   } else {
-    var userID = _DiaryModel2.default.data.length + 1;
-    var entry = request.body;
-    entry.entryID = userID;
-    entry.date = new Date();
-    _DiaryModel2.default.data.push(entry);
-    response.json({ status: 'success', entry: search(userID, _DiaryModel2.default.data) });
+    var userData = { userId: request.decoded.userID, subject: request.body.subject, diary: request.body.diary };
+    _DiaryModel2.default.addEntry(userData).then(function (res) {
+      if (res.status === 'success') {
+        response.status(200).json({ status: 'success', message: 'Entry saved successfully' });
+      } else {
+        response.status(406).json({ status: 'error', message: res });
+      }
+    });
   }
 };
 

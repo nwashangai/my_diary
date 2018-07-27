@@ -7,8 +7,6 @@ node_js:
 cache:
   directories:
     - "node_modules"
-addons:
-  postgresql: "6.4"
 before_script:
   - travis_wait 30 yarn install
   - psql -c 'create database myDiary;' -U postgres
