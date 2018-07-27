@@ -1,7 +1,7 @@
 module.exports = {
 
   PORT: process.env.PORT,
-  DATABASE_URL: 'postgres://postgres:andela@localhost:5432/myDiary',
+  DATABASE_URL: 'postgres://postgres:@localhost:5432/myDiary',
   SECRET: 'asdfghjkl',
   POOL: {
     user: 'postgres', // env var: PGUSER
