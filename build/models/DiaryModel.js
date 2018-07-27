@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var connectPool = new _pg2.default.Pool(_config2.default.POOL);
 
-// reference from https://gist.github.com/zerbfra/70b155fa00b4e0d6fd1d4e090a039ad4
+// reference to https://gist.github.com/zerbfra/70b155fa00b4e0d6fd1d4e090a039ad4
 var query = async function query(data) {
   var client = await connectPool.connect();
   var res = null;
@@ -71,6 +71,18 @@ exports.getEntry = async function (info) {
   try {
     // SQL Query > get entry
     return { status: 'success', data: await query('SELECT * FROM diary WHERE userid = \'' + info.userId + '\' AND id = \'' + info.entry + '\'') };
+  } catch (error) {
+    return { status: 'error', message: error };
+  }
+};
+
+exports.addEntry = async function (userData) {
+  try {
+    // SQL Query > Insert Data
+    var _ref2 = await query('INSERT INTO diary(userid, subject, diary) values(\'' + userData.userId + '\', \'' + userData.subject + '\', \'' + userData.diary + '\')'),
+        res = _ref2.res;
+
+    return { status: 'success', message: res };
   } catch (error) {
     return { status: 'error', message: error };
   }

@@ -3,7 +3,7 @@ import config from '../config';
 
 const connectPool = new pg.Pool(config.POOL);
 
-// reference from https://gist.github.com/zerbfra/70b155fa00b4e0d6fd1d4e090a039ad4
+// reference to https://gist.github.com/zerbfra/70b155fa00b4e0d6fd1d4e090a039ad4
 const query = async (data) => {
   const client = await connectPool.connect();
   let res = null;
@@ -63,6 +63,16 @@ exports.getEntry = async (info) => {
   try {
     // SQL Query > get entry
     return { status: 'success', data: await query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}'`) };
+  } catch (error) {
+    return { status: 'error', message: error };
+  }
+};
+
+exports.addEntry = async (userData) => {
+  try {
+    // SQL Query > Insert Data
+    const { res } = await query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', '${userData.diary}')`);
+    return { status: 'success', message: res };
   } catch (error) {
     return { status: 'error', message: error };
   }
