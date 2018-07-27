@@ -77,3 +77,13 @@ exports.addEntry = async (userData) => {
     return { status: 'error', message: error };
   }
 };
+
+exports.updateDiary = async (userData) => {
+  try {
+    // SQL Query > Insert Data
+    const { res } = await query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE id = ${userData.id}`);
+    return { status: 'success', message: res };
+  } catch (error) {
+    return { status: 'error', message: error };
+  }
+};
