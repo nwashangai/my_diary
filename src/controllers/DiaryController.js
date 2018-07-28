@@ -37,7 +37,7 @@ exports.signUp = (request, response) => {
       } else {
         DiaryModel.signUp(user).then((res) => {
           if (res.status === 'success') {
-            response.status(200).json({ status: 'success', message: 'Insertion successful' });
+            response.status(200).json({ status: 'success', message: 'Signup successful' });
           } else {
             response.status(406).json({ status: 'error', message: res });
           }
@@ -108,21 +108,28 @@ exports.setDiary = (request, response) => {
 }
 
 exports.updateDiary = (request, response) => {
-  const userID = request.params.id;
-  if (search(userID, DiaryModel.data) !== undefined) {
-    if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
-      response.json({ status: 'error', message: 'provide all fields' });
-    } else {
-      const entry = request.body;
-      entry.date = new Date();
-      const done = update(userID, DiaryModel.data, entry);
-      if (done) {
-        response.json({ status: 'success', entry: DiaryModel.data[userID] });
-      } else {
-        response.json({ status: 'error', message: 'no data was saved' });
-      }
-    }
+  if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
+    response.status(406).json({ status: 'error', message: 'provide all fields' });
   } else {
-    response.json({ status: 'error', message: 'problem in saving data' });
+    const userData = { userId: request.decoded.userID, entry: request.params.id, subject: request.body.subject, diary: request.body.diary };
+    DiaryModel.getEntry(userData).then((done, err) => {
+      if (err) {
+        response.status(501).json({ status: 'error', entries: err });
+      }
+      if (done.data.rows.length !== 1) {
+        response.status(501).json({ status: 'error', message: 'invalid entry Id' });
+      } else {
+        DiaryModel.updateDiary(userData).then((res, err) => {
+          if (err) {
+            response.status(501).json({ status: 'error', entries: err });
+          }
+          if (res.status === 'success') {
+            response.status(200).json({ status: 'success', message: 'update successful' });
+          } else {
+            response.status(406).json({ status: 'error', message: res });
+          }
+        });
+      }
+    }); //
   }
 }

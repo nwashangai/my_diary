@@ -52,7 +52,7 @@ exports.signUp = function (request, response) {
       } else {
         _DiaryModel2.default.signUp(user).then(function (res) {
           if (res.status === 'success') {
-            response.status(200).json({ status: 'success', message: 'Insertion successful' });
+            response.status(200).json({ status: 'success', message: 'Signup successful' });
           } else {
             response.status(406).json({ status: 'error', message: res });
           }
@@ -123,21 +123,28 @@ exports.setDiary = function (request, response) {
 };
 
 exports.updateDiary = function (request, response) {
-  var userID = request.params.id;
-  if (search(userID, _DiaryModel2.default.data) !== undefined) {
-    if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
-      response.json({ status: 'error', message: 'provide all fields' });
-    } else {
-      var entry = request.body;
-      entry.date = new Date();
-      var done = update(userID, _DiaryModel2.default.data, entry);
-      if (done) {
-        response.json({ status: 'success', entry: _DiaryModel2.default.data[userID] });
-      } else {
-        response.json({ status: 'error', message: 'no data was saved' });
-      }
-    }
+  if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
+    response.status(406).json({ status: 'error', message: 'provide all fields' });
   } else {
-    response.json({ status: 'error', message: 'problem in saving data' });
+    var userData = { userId: request.decoded.userID, entry: request.params.id, subject: request.body.subject, diary: request.body.diary };
+    _DiaryModel2.default.getEntry(userData).then(function (done, err) {
+      if (err) {
+        response.status(501).json({ status: 'error', entries: err });
+      }
+      if (done.data.rows.length !== 1) {
+        response.status(501).json({ status: 'error', message: 'invalid entry Id' });
+      } else {
+        _DiaryModel2.default.updateDiary(userData).then(function (res, err) {
+          if (err) {
+            response.status(501).json({ status: 'error', entries: err });
+          }
+          if (res.status === 'success') {
+            response.status(200).json({ status: 'success', message: 'update successful' });
+          } else {
+            response.status(406).json({ status: 'error', message: res });
+          }
+        });
+      }
+    }); //
   }
 };

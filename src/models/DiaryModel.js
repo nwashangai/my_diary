@@ -81,7 +81,7 @@ exports.addEntry = async (userData) => {
 exports.updateDiary = async (userData) => {
   try {
     // SQL Query > Insert Data
-    const { res } = await query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE id = ${userData.id}`);
+    const { res } = await query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE id = '${userData.entry}' AND userid = '${userData.userId}'`);
     return { status: 'success', message: res };
   } catch (error) {
     return { status: 'error', message: error };

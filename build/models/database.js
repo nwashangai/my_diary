@@ -10,7 +10,7 @@ var _config2 = _interopRequireDefault(_config);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var connectionString = process.env.DATABASE_URL || _config2.default.DATABASE_URL;
+var connectionString = 'postgres://postgres:1234@localhost:5432/myDiary';
 
 var client = new _pg2.default.Client(connectionString);
 client.connect();
