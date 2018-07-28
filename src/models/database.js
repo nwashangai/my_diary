@@ -1,7 +1,7 @@
 import pg from 'pg';
 import config from '../config';
 
-const connectionString = 'postgres://postgres:andela@localhost:5432/myDiary';
+const connectionString = process.env.DATABASE_URL || config.DATABASE_URL;
 
 const client = new pg.Client(connectionString);
 client.connect();
