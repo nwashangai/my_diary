@@ -3,7 +3,7 @@ services:
 dist: trusty
 language: node_js
 node_js:
-  - "stable"
+  - "node"
 cache:
   directories:
     - "node_modules"
