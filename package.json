@@ -28,7 +28,7 @@
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "password-hash": "^1.2.2",
-    "pg": "^6.4.0",
+    "pg": "^7.4.3",
     "should": "^13.2.1"
   },
   "devDependencies": {
