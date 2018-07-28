@@ -13,8 +13,8 @@ postgres:
   username: postgres
 before_script:
   - travis_wait 30 yarn install
-  - psql -c "CREATE DATABASE myDiary;" -U postgres
-  - psql -c "CREATE USER andela WITH PASSWORD 'andela';" -U postgres
+  - psql -c 'create database myDiary;' -U postgres
+  - cp database.yml.travis config/database.yml
   - travis_wait npm install
   - node build/models/database.js
 script:

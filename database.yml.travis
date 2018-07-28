@@ -1,0 +1,5 @@
+test:
+  adapter: postgresql
+  database: myDiary
+  username: postgres
+  password: andela
