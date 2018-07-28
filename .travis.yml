@@ -7,9 +7,13 @@ node_js:
 cache:
   directories:
     - "node_modules"
+postgres:
+  adapter: postgresql
+  database: myDiary
+  username: postgres
 before_script:
   - travis_wait 30 yarn install
-  - psql -c 'create database myDiary_test;' -U postgres
+  - "psql -c 'create database myDiary;' -U postgres"
   - travis_wait npm install
   - node build/models/database.js
 script:
