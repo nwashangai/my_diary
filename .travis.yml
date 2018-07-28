@@ -16,7 +16,7 @@ before_script:
   - psql -c 'create database myDiary;' -U postgres
   - cp database.travis.yml database.yml
   - travis_wait npm install
-  - node build/models/database.js
+  - psql -U postgres -d travis -f database/myDiary.sql
 script:
   - ./node_modules/mocha/bin/mocha  --exit
 after_success:
