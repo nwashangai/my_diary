@@ -1,7 +1,7 @@
 import pg from 'pg';
 import config from '../config';
 
-const connectionString = 'postgres://postgres:1234@localhost:5432/myDiary_test';
+const connectionString = 'postgres://postgres:1234@localhost:5432/myDia_test';
 
 const client = new pg.Client(connectionString);
 client.connect();
