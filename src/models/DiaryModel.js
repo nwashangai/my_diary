@@ -1,7 +1,7 @@
 import pg from 'pg';
-import config from '../config';
+import configjson from '../config';
 
-const connectPool = new pg.Pool(config.POOL);
+const connectPool = new pg.Pool(configjson.development.POOL);
 
 // reference to https://gist.github.com/zerbfra/70b155fa00b4e0d6fd1d4e090a039ad4
 const query = async (data) => {

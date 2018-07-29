@@ -18,7 +18,7 @@ router.use((req, res, next) => {
   // decode token
   if (token) {
     // verifies key
-    jwt.verify(token, config.SECRET, (err, decoded) => {
+    jwt.verify(token, config.development.SECRET, (err, decoded) => {
       if (err) {
         return res.json({ status: 'error', message: 'authentication failed' });
       }

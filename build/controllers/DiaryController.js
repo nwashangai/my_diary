@@ -73,7 +73,7 @@ exports.login = function (request, response) {
           var payload = {
             userID: res.data.rows[0].id
           };
-          var tok = _jsonwebtoken2.default.sign(payload, _config2.default.SECRET);
+          var tok = _jsonwebtoken2.default.sign(payload, _config2.default.development.SECRET);
           response.status(200).json({ status: 'success', message: 'login successful', token: tok });
         } else {
           response.status(406).json({ status: 'error', message: 'invalid user' });

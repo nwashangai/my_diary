@@ -10,7 +10,7 @@ var _config2 = _interopRequireDefault(_config);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var connectPool = new _pg2.default.Pool(_config2.default.POOL);
+var connectPool = new _pg2.default.Pool(_config2.default.development.POOL);
 
 // reference to https://gist.github.com/zerbfra/70b155fa00b4e0d6fd1d4e090a039ad4
 var query = async function query(data) {

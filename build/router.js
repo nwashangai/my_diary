@@ -33,7 +33,7 @@ router.use(function (req, res, next) {
   // decode token
   if (token) {
     // verifies key
-    _jsonwebtoken2.default.verify(token, _config2.default.SECRET, function (err, decoded) {
+    _jsonwebtoken2.default.verify(token, _config2.default.development.SECRET, function (err, decoded) {
       if (err) {
         return res.json({ status: 'error', message: 'authentication failed' });
       }

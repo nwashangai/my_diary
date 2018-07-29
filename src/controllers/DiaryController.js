@@ -56,9 +56,9 @@ exports.login = (request, response) => {
         const isValid = (res.data.rows.length === 1) ? passwordHash.verify(request.body.password, res.data.rows[0].password) : false;
         if (isValid) {
           const payload = {
-            userID: res.data.rows[0].id
+            userID: res.data.rows[0].id,
           };
-          const tok = jwt.sign(payload, config.SECRET);
+          const tok = jwt.sign(payload, config.development.SECRET);
           response.status(200).json({ status: 'success', message: 'login successful', token: tok });
         } else {
           response.status(406).json({ status: 'error', message: 'invalid user' });
