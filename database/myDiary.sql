@@ -4,7 +4,6 @@
 
 -- Dumped from database version 9.5.13
 -- Dumped by pg_dump version 9.5.13
-CREATE DATABASE myDiary;
 
 SET statement_timeout = 0;
 -- SET lock_timeout = 0;
