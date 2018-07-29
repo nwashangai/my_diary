@@ -11,7 +11,7 @@ module.exports = {
       // password: '', // env var: PGPASSWORD
       // host: 'localhost', // Server hosting the postgres database
       // port: 5432, // env var: PGPORT
-      max: 30 // max number of clients in the pool
+      max: 20 // max number of clients in the pool
     }
   },
   production: {
