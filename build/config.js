@@ -9,8 +9,8 @@ module.exports = {
       user: 'postgres', // env var: PGUSER
       database: 'myDiary', // env var: PGDATABASE
       // password: '', // env var: PGPASSWORD
-      host: 'localhost', // Server hosting the postgres database
-      port: 5432, // env var: PGPORT
+      // host: 'localhost', // Server hosting the postgres database
+      // port: 5432, // env var: PGPORT
       max: 30 // max number of clients in the pool
     }
   },
