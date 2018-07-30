@@ -1,5 +1,9 @@
 'use strict';
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -15,7 +19,7 @@ var _router2 = _interopRequireDefault(_router);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-var PORT = process.env.PORT;
+_dotenv2.default.config();
 
 // Middle-wares
 app.use(_bodyParser2.default.urlencoded({ extended: false }));
@@ -26,6 +30,6 @@ app.use(function (req, res, next) {
   res.send({ error: '404 Sorry the page has not yet been defined try /api/v1/' });
 });
 
-app.listen(PORT || 3000);
+app.listen(process.env.PORT || 3000);
 
 module.exports = app; // for testing

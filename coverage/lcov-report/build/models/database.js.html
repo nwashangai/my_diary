@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for build/app.js</title>
+    <title>Code coverage report for build/models/database.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">build</a> app.js
+      <a href="../../index.html">All files</a> / <a href="index.html">build/models</a> database.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>0/15</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>0/15</span>
       </div>
     </div>
     <p class="quiet">
@@ -71,15 +71,7 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -94,14 +86,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -110,42 +96,32 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-var _express = <span class="cstat-no" title="statement not covered" >require('express');</span>
+var _pg = <span class="cstat-no" title="statement not covered" >require('pg');</span>
 &nbsp;
-var _express2 = <span class="cstat-no" title="statement not covered" >_interopRequireDefault(_express);</span>
+var _pg2 = <span class="cstat-no" title="statement not covered" >_interopRequireDefault(_pg);</span>
 &nbsp;
-var _bodyParser = <span class="cstat-no" title="statement not covered" >require('body-parser');</span>
-&nbsp;
-var _bodyParser2 = <span class="cstat-no" title="statement not covered" >_interopRequireDefault(_bodyParser);</span>
-&nbsp;
-var _config = <span class="cstat-no" title="statement not covered" >require('./config');</span>
+var _config = <span class="cstat-no" title="statement not covered" >require('../config');</span>
 &nbsp;
 var _config2 = <span class="cstat-no" title="statement not covered" >_interopRequireDefault(_config);</span>
 &nbsp;
-var _router = <span class="cstat-no" title="statement not covered" >require('./router');</span>
-&nbsp;
-var _router2 = <span class="cstat-no" title="statement not covered" >_interopRequireDefault(_router);</span>
-&nbsp;
 function <span class="fstat-no" title="function not covered" >_interopRequireDefault(</span>obj) { <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; </span>}
 &nbsp;
-var app = <span class="cstat-no" title="statement not covered" >(0, _express2.default)();</span>
+var connectionString = <span class="cstat-no" title="statement not covered" >process.env.DATABASE_URL || _config2.default.DATABASE_URL;</span>
 &nbsp;
-// Middle-wares
-<span class="cstat-no" title="statement not covered" >app.use(_bodyParser2.default.urlencoded({ extended: false }));</span>
-<span class="cstat-no" title="statement not covered" >app.use(_bodyParser2.default.json());</span>
-<span class="cstat-no" title="statement not covered" >app.use('/api/v1', _router2.default);</span>
-<span class="cstat-no" title="statement not covered" >app.use(<span class="fstat-no" title="function not covered" >fu</span>nction (req, res, next) {</span>
-<span class="cstat-no" title="statement not covered" >  res.status(404);</span>
-<span class="cstat-no" title="statement not covered" >  res.send({ error: '404 Sorry the page has not yet been defined try /api/v1/' });</span>
-});
-&nbsp;
-<span class="cstat-no" title="statement not covered" >app.listen(_config2.default.PORT || 3000);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = app; </span>// for testing</pre></td></tr>
+var client = <span class="cstat-no" title="statement not covered" >new _pg2.default.Client(connectionString);</span>
+<span class="cstat-no" title="statement not covered" >client.connect();</span>
+var users = <span class="cstat-no" title="statement not covered" >client.query('CREATE TABLE users(id SERIAL PRIMARY KEY, full_name VARCHAR(80) not null, email VARCHAR(80) not null, tot_entries INT DEFAULT 0, bio TEXT, password TEXT not null)');</span>
+<span class="cstat-no" title="statement not covered" >users.on('end', <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+  var diary = <span class="cstat-no" title="statement not covered" >client.query('CREATE TABLE diary(id SERIAL PRIMARY KEY, userId INTEGER not null, subject VARCHAR(200) not null, diary TEXT not null, date TIMESTAMP DEFAULT NOW())');</span>
+<span class="cstat-no" title="statement not covered" >  diary.on('end', <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+    var reminder = <span class="cstat-no" title="statement not covered" >client.query('CREATE TABLE reminder(id SERIAL PRIMARY KEY, userId INTEGER not null, description TEXT not null, date TIMESTAMP not null)');</span>
+<span class="cstat-no" title="statement not covered" >    reminder.on('end', <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >      client.end();</span>
+    });
+  });
+});</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
@@ -154,7 +130,7 @@ var app = <span class="cstat-no" title="statement not covered" >(0, _express2.de
   generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jul 27 2018 15:11:21 GMT+0100 (WAT)
 </div>
 </div>
-<script src="../prettify.js"></script>
+<script src="../../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -162,7 +138,7 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../sorter.js"></script>
-<script src="../block-navigation.js"></script>
+<script src="../../sorter.js"></script>
+<script src="../../block-navigation.js"></script>
 </body>
 </html>

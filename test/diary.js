@@ -1,7 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../build/app');
-const { expect } = chai.expect;
 const should = chai.should();
 
 chai.use(chaiHttp);
@@ -41,6 +40,7 @@ describe('Diary', () => {
     it('it should GET all the diaries', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .get('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .end((err, res) => {
           res.should.have.status(200);
           res.type.should.equal('application/json');
@@ -56,6 +56,7 @@ describe('Diary', () => {
       it(`it should GET A single entry with given id ${userId}`, (done) => {
         chai.request('http://localhost:3000/api/v1')
           .get(`/entries/${userId}`)
+          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
@@ -72,6 +73,7 @@ describe('Diary', () => {
       it(`it should GET A single entry with given id ${userId}`, (done) => {
         chai.request('http://localhost:3000/api/v1')
           .get(`/entries/${userId}`)
+          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
@@ -87,20 +89,22 @@ describe('Diary', () => {
     it('it should create a new entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property('status');
-          res.body.should.have.property('entry');
+          res.body.should.have.property('message');
           done();
         });
     });
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -109,9 +113,10 @@ describe('Diary', () => {
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -120,9 +125,10 @@ describe('Diary', () => {
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -131,9 +137,10 @@ describe('Diary', () => {
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -142,9 +149,10 @@ describe('Diary', () => {
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -153,9 +161,10 @@ describe('Diary', () => {
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -164,9 +173,10 @@ describe('Diary', () => {
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -178,20 +188,22 @@ describe('Diary', () => {
     it('it should update a single entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo update', diary: 'bar update' })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property('status');
-          res.body.should.have.property('entry');
+          res.body.should.have.property('message');
           done();
         });
     });
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -200,9 +212,10 @@ describe('Diary', () => {
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -211,9 +224,10 @@ describe('Diary', () => {
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -222,9 +236,10 @@ describe('Diary', () => {
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -233,9 +248,10 @@ describe('Diary', () => {
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -244,9 +260,10 @@ describe('Diary', () => {
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -255,9 +272,10 @@ describe('Diary', () => {
     it('it should reject the entry update', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
+        .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(406);
           res.body.should.have.property('status');
           res.body.should.have.property('message');
           done();
@@ -267,9 +285,10 @@ describe('Diary', () => {
       it(`it should reject invalid entryId ${userId}`, (done) => {
         chai.request('http://localhost:3000/api/v1')
           .put(`/entries/${userId}`)
+          .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
           .send({ subject: 'foo update', diary: 'bar update' })
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(501);
             res.type.should.equal('application/json');
             res.body.should.have.property('status');
             res.body.should.have.property('message');
