@@ -10,7 +10,6 @@ cache:
 addons:
   postgresql: "9.5"
 before_script:
-  - travis_wait --ignore-engines 30 yarn install
   - psql -c 'create database mydiary;' -U postgres
   - psql -c "CREATE USER andela WITH PASSWORD 'andela';" -U postgres
   - travis_wait npm install
