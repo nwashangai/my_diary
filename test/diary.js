@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../build/app');
+const app = require('../src/app');
 const should = chai.should();
 
 chai.use(chaiHttp);
@@ -11,7 +11,7 @@ describe('Diary', () => {
   */
   // const req = chai.request(app).get('/')
   describe('/GET /', () => {
-    it('it should GET all the diaries', (done) => {
+    it('it should Reject default', (done) => {
       chai.request('http://localhost:3000')
         .get('/')
         .end((err, res) => {
@@ -24,7 +24,7 @@ describe('Diary', () => {
   });
 
   describe('/GET api/v1/', () => {
-    it('it should GET all the diaries', (done) => {
+    it('it should reject request without token', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .get('/')
         .end((err, res) => {
@@ -44,8 +44,8 @@ describe('Diary', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.type.should.equal('application/json');
-          res.body.should.have.property('status');
-          res.body.should.have.property('entries');
+          res.body.should.have.property('status', 'success');
+          res.body.entries.should.be.a('array');
           done();
         });
     });
@@ -60,8 +60,8 @@ describe('Diary', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
-            res.body.should.have.property('status');
-            res.body.should.have.property('entry');
+            res.body.should.have.property('status', 'success');
+            res.body.entry.should.be.a('array');
             done();
           });
       });
@@ -77,8 +77,8 @@ describe('Diary', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.type.should.equal('application/json');
-            res.body.should.have.property('status');
-            res.body.should.have.property('message');
+            res.body.should.have.property('status', 'error');
+            res.body.should.have.property('message', 'No entry found');
             done();
           });
       });
@@ -93,8 +93,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'success');
+          res.body.should.have.property('message', 'Entry saved successfully');
           done();
         });
     });
@@ -105,8 +105,8 @@ describe('Diary', () => {
         .send({ subject: 'foo' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -117,8 +117,8 @@ describe('Diary', () => {
         .send({ diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -129,8 +129,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -141,8 +141,8 @@ describe('Diary', () => {
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -153,8 +153,8 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -165,8 +165,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -177,8 +177,8 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'please provide all fields');
           done();
         });
     });
@@ -191,9 +191,9 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo update', diary: 'bar update' })
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.should.have.status(501);
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'invalid entry Id');
           done();
         });
     });
@@ -204,8 +204,8 @@ describe('Diary', () => {
         .send({ subject: 'foo' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -216,8 +216,8 @@ describe('Diary', () => {
         .send({ diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -228,8 +228,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -240,8 +240,8 @@ describe('Diary', () => {
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -252,8 +252,8 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -264,8 +264,8 @@ describe('Diary', () => {
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -276,8 +276,8 @@ describe('Diary', () => {
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
           res.should.have.status(406);
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'provide all fields');
           done();
         });
     });
@@ -290,8 +290,8 @@ describe('Diary', () => {
           .end((err, res) => {
             res.should.have.status(501);
             res.type.should.equal('application/json');
-            res.body.should.have.property('status');
-            res.body.should.have.property('message');
+            res.body.should.have.property('status', 'error');
+            res.body.should.have.property('message', 'invalid entry Id');
             done();
           });
       });

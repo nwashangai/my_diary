@@ -16,6 +16,6 @@ before_script:
   - travis_wait npm install
   - psql -U postgres -d mydiary -f database/myDiary.sql
 script:
-  - ./node_modules/mocha/bin/mocha  --exit
+  - ./node_modules/mocha/bin/mocha --compilers js:babel-register test/*.js --exit
 after_success:
   - npm run coveralls
