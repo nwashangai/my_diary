@@ -1,7 +1,7 @@
 var homeBtn = document.getElementById("home")
 var alertBx = document.getElementById("alert-box")
 
-let openContent = (evt, cityName) => {
+let openContent = (evt, tabName) => {
     var i, tabcontent, tablinks
     tabcontent = document.getElementsByClassName("tabcontent")
     for (i = 0; i < tabcontent.length; i++) {
@@ -11,13 +11,29 @@ let openContent = (evt, cityName) => {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "")
     }
-    document.getElementById(cityName).style.display = "block"
+    document.getElementById(tabName).style.display = "block"
     evt.currentTarget.className += " active"
 }
 
 let loginAlert = (data) => {
     document.getElementById("loginAlert").innerHTML = "<span class=\"closebtn\" onclick=\"this.parentElement.style.display = 'none';\">&times;</span> <strong>Danger!</strong> "+data
     document.getElementById('loginAlert').style.display = "block"
+}
+
+// resize height 
+//var height = document.getElementById("main").height()
+/*window.addEventListener('resize', function(event){
+    document.getElementById("sidebar-left").css({"height":height})
+})*/
+
+let toggleMenu = () => {
+    var toggle = document.getElementById("sidebar-left");
+    if (toggle.style.display === "none") {
+        toggle.style.display = "block";
+        window.scrollTo(0, 0)
+    } else {
+        toggle.style.display = "none";
+    }
 }
 
 // Define validator
@@ -79,6 +95,9 @@ let getDairy = (identifier) => {
     document.getElementById("dairy-subject").innerHTML = item.subject
     document.getElementById("dairy-main").innerHTML = item.dairy
     document.getElementById('view-entry').style.display = "block"
+    if (window.matchMedia("(max-width: 1000px)").matches) {
+        document.getElementById('main').focus()
+    }
 }
 
 homeBtn.onclick = () => {
@@ -89,6 +108,7 @@ homeBtn.onclick = () => {
 // Get the modal
 var modal = document.getElementById('dairy-modal')
 var prfModal = document.getElementById('profile-modal')
+var stngModal = document.getElementById('settings-modal')
 
 //get the entry
 var addBtn = document.getElementById('addEntry')
@@ -97,10 +117,12 @@ var addBtn = document.getElementById('addEntry')
 var btn = document.getElementById("add")
 var btn2 = document.getElementById("create")
 var prf = document.getElementById("prf")
+var settings = document.getElementById("settings")
 
 // Get the <span> element that closes the modal
 var clsAdd = document.getElementsByClassName("close")[0]
 var clsPrf = document.getElementsByClassName("close")[1]
+var clsstng = document.getElementsByClassName("close")[2]
 
 // When the user clicks the button, open the modal 
 btn.onclick = () => {
@@ -111,6 +133,9 @@ btn2.onclick = () => {
 }
 prf.onclick = () => {
     prfModal.style.display = "block"
+}
+settings.onclick = () => {
+    stngModal.style.display = "block"
 }
 addBtn.onclick = () => {
     document.getElementById("alert-data").innerHTML = "Item added"
@@ -125,6 +150,9 @@ clsAdd.onclick = () => {
 clsPrf.onclick = () => {
     prfModal.style.display = "none"
 }
+clsstng.onclick = () => {
+    stngModal.style.display = "none"
+}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = (event) => {
@@ -133,6 +161,9 @@ window.onclick = (event) => {
     }
     if (event.target == prfModal) {
         prfModal.style.display = "none"
+    }
+    if (event.target == stngModal) {
+        stngModal.style.display = "none"
     }
 }
 
