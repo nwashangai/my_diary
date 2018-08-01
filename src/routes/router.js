@@ -1,7 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import config from './config';
-import DiaryController from './controllers/DiaryController';
+import config from '../config';
+import DiaryController from '../controllers/DiaryController';
 
 const router = express.Router();
 

@@ -5,10 +5,14 @@
   "main": "app.js",
   "scripts": {
     "build": "babel src -d build",
-    "start": "nodemon build/app.js",
-    "test": "./node_modules/mocha/bin/_mocha --exit",
-    "cover": "istanbul --include-all-sources cover npm run test --recursive",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "start": "nodemon --exec babel-node \"src/app.js\"",
+    "test": "./node_modules/mocha/bin/_mocha --compilers js:babel-register test/*.js --exit",
+    "cover": "nyc npm run test && nyc report --reporter=lcov --reporter=text-lcov npm test",
+    "coveralls": "nyc npm run test && nyc report --reporter=lcov --reporter=text-lcov npm test"
+  },
+  "engines": {
+    "node": "9.2.1",
+    "npm": "6.1.0"
   },
   "repository": {
     "type": "git",
@@ -28,9 +32,11 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
+    "nyc": "^12.0.2",
     "password-hash": "^1.2.2",
     "pg": "^7.4.3",
-    "should": "^13.2.1"
+    "should": "^13.2.1",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",

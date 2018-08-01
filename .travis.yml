@@ -10,12 +10,11 @@ cache:
 addons:
   postgresql: "9.5"
 before_script:
-  - travis_wait 30 yarn install
   - psql -c 'create database mydiary;' -U postgres
   - psql -c "CREATE USER andela WITH PASSWORD 'andela';" -U postgres
   - travis_wait npm install
   - psql -U postgres -d mydiary -f database/myDiary.sql
 script:
-  - ./node_modules/mocha/bin/mocha  --exit
+  - ./node_modules/mocha/bin/mocha --compilers js:babel-register test/*.js --exit
 after_success:
   - npm run coveralls

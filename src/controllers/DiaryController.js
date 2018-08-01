@@ -1,39 +1,23 @@
 import passwordHash from 'password-hash';
 import jwt from 'jsonwebtoken';
 import config from '../config';
+import validate from '../helpers/validator';
 import DiaryModel from '../models/DiaryModel';
 
-// search through an object
-const search = (nameKey, obj) => {
-  for (let i = 0; i < obj.length; i += 1) {
-    if (obj[i].entryID === nameKey) {
-      return obj[i];
-    }
-  }
-  return false;
-}
-
-// update data
-const update = (nameKey, obj, ent) => {
-  for (let i = 0; i < obj.length; i += 1) {
-    if (obj[i].entryID === nameKey) {
-      DiaryModel.data[i].subject = ent.subject;
-      DiaryModel.data[i].diary = ent.subject;
-      DiaryModel.data[i].date = ent.subject;
-      return true
-    }
-  }
-  return false;
-}
-
+/**
+ * User SignUp
+ * @method
+ * @argument {object} request - Http request object
+ * @argument {object} response - Http response object
+ */
 exports.signUp = (request, response) => {
-  if (!request.body.full_name || !request.body.email || !request.body.password || request.body.full_name.trim() === '' || request.body.email.trim() === '' || request.body.password.trim() === '') {
-    response.json({ status: 'error', message: 'sorry please provide all fields' });
+  if (!validate.isValidSignUp(request.body)) {
+    response.status(400).json({ status: 'error', message: 'sorry please provide all fields' });
   } else {
     const user = { full_name: request.body.full_name, email: request.body.email, password: passwordHash.generate(request.body.password) };
     DiaryModel.login(request.body.email).then((done) => {
       if (done.data.rows.length > 0) {
-        response.status(200).json({ status: 'error', message: 'duplicate email address' });
+        response.status(409).json({ status: 'error', message: 'duplicate email address' });
       } else {
         DiaryModel.signUp(user).then((res) => {
           if (res.status === 'success') {
@@ -47,8 +31,14 @@ exports.signUp = (request, response) => {
   }
 };
 
+/**
+ * User Signin
+ * @method
+ * @argument {object} request - Http request object
+ * @argument {object} response - Http response object
+ */
 exports.login = (request, response) => {
-  if (!request.body.email || !request.body.password || request.body.email.trim() === '' || request.body.password.trim() === '') {
+  if (!validate.isValidLogin(request.body)) {
     response.json({ status: 'error', message: 'sorry please provide all fields' });
   } else {
     DiaryModel.login(request.body.email).then((res) => {
@@ -70,6 +60,12 @@ exports.login = (request, response) => {
   }
 }
 
+/**
+ * Fectch user entries
+ * @method
+ * @argument {object} request - Http request object
+ * @argument {object} response - Http response object
+ */
 exports.getDiary = (request, response) => {
   if (request.params.id) {
     DiaryModel.getEntry({ userId: request.decoded.userID, entry: request.params.id }).then((res, err) => {
@@ -92,9 +88,15 @@ exports.getDiary = (request, response) => {
   }
 }
 
+/**
+ * Stores user entry
+ * @method
+ * @argument {object} request - Http request object
+ * @argument {object} response - Http response object
+ */
 exports.setDiary = (request, response) => {
-  if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
-    response.status(406).json({ status: 'error', message: 'sorry please provide all fields' });
+  if (!validate.isValidEntry(request.body)) {
+    response.status(406).json({ status: 'error', message: 'please provide all fields' });
   } else {
     const userData = { userId: request.decoded.userID, subject: request.body.subject, diary: request.body.diary };
     DiaryModel.addEntry(userData).then((res) => {
@@ -107,12 +109,18 @@ exports.setDiary = (request, response) => {
   }
 }
 
+/**
+ * Update user entry
+ * @method
+ * @argument {object} request - Http request object
+ * @argument {object} response - Http response object
+ */
 exports.updateDiary = (request, response) => {
-  if (!request.body.subject || !request.body.diary || request.body.subject.trim() === '' || request.body.diary.trim() === '') {
+  if (!validate.isValidEntry(request.body)) {
     response.status(406).json({ status: 'error', message: 'provide all fields' });
   } else {
     const userData = { userId: request.decoded.userID, entry: request.params.id, subject: request.body.subject, diary: request.body.diary };
-    DiaryModel.getEntry(userData).then((done, err) => {
+    DiaryModel.getTimedEntry(userData).then((done, err) => {
       if (err) {
         response.status(501).json({ status: 'error', entries: err });
       }
