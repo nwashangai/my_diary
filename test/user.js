@@ -72,7 +72,7 @@ describe('Diary', () => {
         .post('/auth/login')
         .send({ email: 'wrong@gmail.com', password: '1234567' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(403);
           res.type.should.equal('application/json');
           res.body.should.have.property('status');
           res.body.should.have.property('message');
@@ -87,7 +87,7 @@ describe('Diary', () => {
         .post('/auth/login')
         .send({ email: 'young@gmail.com', password: '123457' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(403);
           res.type.should.equal('application/json');
           res.body.should.have.property('status');
           res.body.should.have.property('message');

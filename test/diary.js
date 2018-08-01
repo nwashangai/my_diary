@@ -104,7 +104,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -116,7 +116,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -128,7 +128,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -140,7 +140,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -152,7 +152,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -164,7 +164,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -176,7 +176,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'please provide all fields');
           done();
@@ -203,7 +203,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
@@ -215,7 +215,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
@@ -227,7 +227,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: '' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
@@ -239,7 +239,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: '', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
@@ -251,7 +251,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: 'bar' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
@@ -263,7 +263,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
@@ -275,7 +275,7 @@ describe('Diary', () => {
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: ' ', diary: ' ' })
         .end((err, res) => {
-          res.should.have.status(406);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
           res.body.should.have.property('message', 'provide all fields');
           done();
