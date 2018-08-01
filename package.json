@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "babel src -d build",
-    "start": "nodemon --exec babel-node \"src/app.js\"",
+    "start": "babel-node src/app.js",
+    "start-dev": "nodemon --exec babel-node \"src/app.js\"",
     "test": "./node_modules/mocha/bin/_mocha --compilers js:babel-register test/*.js --exit",
     "cover": "nyc npm run test && nyc report --reporter=lcov --reporter=text-lcov npm test",
     "coveralls": "nyc npm run test && nyc report --reporter=lcov --reporter=text-lcov npm test"
