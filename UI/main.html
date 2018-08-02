@@ -26,8 +26,6 @@
         <span id="add" class="btn"><span class="plus">+</span> New</span><br/><br/>
         <ul>
             <button class="btn" onclick="getDairy()" style="font-size:15px"><i class="fa fa-list"></i> Entries</button>
-            <!--<li class="side-item" onclick="getDairy()">Entries</li>-->
-            <!--<li class="side-item" onclick="getDairy('work')">Done with work</li>-->
         </ul>
     </div>
     <div id="main" tabindex="-1">
@@ -59,7 +57,7 @@
                 <label for="my-textarea">What do you think?</label>
                 <textarea id="my-textarea" class="diary-input" maxlength="250"></textarea>
             </p>
-            <p class="btn-wrapper">
+            <p class="btn-wrapper" id="get-btn">
                 <input class="submit-btn btn-good" id="addEntry" type="button" value="ADD">
             </p>
         </div>
@@ -73,7 +71,7 @@
             </p>
             <div class="alert-line"></div>
             <p class="alert-btn-wrapper">
-                <input class="submit-btn btn-good" type="button" value="OK" onclick="alertBx.style.display = 'none'">
+                <input class="submit-btn btn-good" type="button" id="ok" value="OK" onclick="alertBx.style.display = 'none'">
             </p>
         </div>
     </div>

@@ -50,7 +50,7 @@ const query = async (data) => {
  */
 exports.signUp = async (userData) => {
   try {
-    const { res } = await query(`INSERT INTO users(full_name, email, password) values('${userData.full_name}', '${userData.email}', '${userData.password}')`);
+    const { res } = await query(`INSERT INTO users(full_name, email, password) values('${userData.full_name}', '${userData.email}', '${userData.password}') RETURNING *`);
     return { status: 'success', message: res };
   } catch (error) {
     return { status: 'error', message: error };
@@ -75,12 +75,8 @@ exports.login = async (email) => {
  * @method
  * @argument {String} userId - user ID
  */
-exports.getAllEntry = async (userId) => {
-  try {
-    return { status: 'success', data: await query(`SELECT * FROM diary WHERE userid = '${userId}'`) };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.getAllEntry = (userId) => {
+  return query(`SELECT * FROM diary WHERE userid::int8 = ${userId}::int8`);
 };
 
 /**
@@ -88,12 +84,8 @@ exports.getAllEntry = async (userId) => {
  * @method
  * @argument {object} userdata - user entry information
  */
-exports.getEntry = async (info) => {
-  try {
-    return { status: 'success', data: await query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}'`) };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.getEntry = (info) => {
+  return query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}'`);
 };
 
 /**
@@ -119,7 +111,7 @@ exports.getTimedEntry = async (info) => {
  */
 exports.addEntry = async (userData) => {
   try {
-    const { res } = await query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', '${userData.diary}')`);
+    const { res } = await query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', '${userData.diary}') RETURNING *`);
     return { status: 'success', message: res };
   } catch (error) {
     return { status: 'error', message: error };
@@ -131,11 +123,6 @@ exports.addEntry = async (userData) => {
  * @method
  * @argument {object} userdata - new entry data
  */
-exports.updateDiary = async (userData) => {
-  try {
-    const { res } = await query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE id = '${userData.entry}' AND userid = '${userData.userId}'`);
-    return { status: 'success', message: res };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.updateDiary = (userData) => {
+  return query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE (id = '${userData.entry}' AND userid = '${userData.userId}') RETURNING *`);
 };

@@ -185,15 +185,15 @@ describe('Diary', () => {
   });
 
   describe('PUT /entries/<entryId>', () => {
-    it('it should update a single entry', (done) => {
+    it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .put('/entries/1')
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
         .send({ subject: 'foo update', diary: 'bar update' })
         .end((err, res) => {
-          res.should.have.status(501);
+          res.should.have.status(400);
           res.body.should.have.property('status', 'error');
-          res.body.should.have.property('message', 'invalid entry Id');
+          res.body.should.have.property('message', 'It\'s too late to update this');
           done();
         });
     });
@@ -288,10 +288,10 @@ describe('Diary', () => {
           .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
           .send({ subject: 'foo update', diary: 'bar update' })
           .end((err, res) => {
-            res.should.have.status(501);
+            res.should.have.status(404);
             res.type.should.equal('application/json');
             res.body.should.have.property('status', 'error');
-            res.body.should.have.property('message', 'invalid entry Id');
+            res.body.should.have.property('message', 'Invalid Id');
             done();
           });
       });

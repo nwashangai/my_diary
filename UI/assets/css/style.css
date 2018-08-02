@@ -351,11 +351,11 @@ li:hover {
         width: 10px;
     }
     .submit-btn {
-        min-width: 80px;
-        padding: 7px;
+        min-width: 60px;
+        padding: 5px;
         border: 0px;
-        font-size: 17px;
-        border-radius: 8px;
+        font-size: 15px;
+        border-radius: 3px;
         color: white;
         font-weight: bold;
     }
@@ -722,7 +722,9 @@ input[type="button"]:hover {
 
 
  .box-in {
-     margin: 30px;
+     margin-left: auto;
+     width: 80%;
+     margin-right: auto;
      margin-top: 100px;
      background: rgba(85, 83, 95, 0.55);
      padding: 20px;
@@ -738,12 +740,11 @@ input[type="button"]:hover {
  #note {
      padding: 20px;
      width: 90%;
-     padding-left: 45px;
  }
  .line {
      height: 1px;
      width: 350px;
-     margin: 20px auto;
+     margin: auto;
      background: white;
  }
  .alert-line {
@@ -1034,4 +1035,32 @@ textarea {
 }
 .collapse + input:checked + div{
   display:block;
+}
+
+@media(min-width: 100px){
+    #my-table{
+        margin-top: 96px;
+    }
+}
+
+@media (max-width: 996px) {
+    #sidebar-left {
+        margin-top: 90px;
+    }
+    #add {
+        width: 80%;
+    }
+    .btn {
+        width: 80%;
+    }
+}
+#no-data {
+    width: 70%;
+    background-color: #fefefe;
+    color: #424949;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+    margin: auto;
+    border-radius: 3px;
 }

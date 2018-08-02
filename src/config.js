@@ -6,7 +6,7 @@ module.exports = {
     POOL: {
       user: 'postgres', // env var: PGUSER
       database: 'mydiary', // env var: PGDATABASE
-      password: '', // env var: PGPASSWORD
+      password: 'andela', // env var: PGPASSWORD
       host: 'localhost', // Server hosting the postgres database
       port: 5432, // env var: PGPORT
       max: 20, // max number of clients in the pool

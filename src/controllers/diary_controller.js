@@ -21,7 +21,7 @@ exports.signUp = (request, response) => {
       } else {
         DiaryModel.signUp(user).then((res) => {
           if (res.status === 'success') {
-            response.status(200).json({ status: 'success', message: 'Signup successful' });
+            response.status(200).json({ status: 'success', message: 'Signup successful', entry: res.message.rows[0] });
           } else {
             response.json({ status: 'error', message: res });
           }
@@ -73,8 +73,8 @@ exports.login = (request, response) => {
 exports.getDiary = (request, response) => {
   if (request.params.id) {
     DiaryModel.getEntry({ userId: request.decoded.userID, entry: request.params.id }).then((res) => {
-      if (res.data.rows.length === 1) {
-        response.status(200).json({ status: 'success', entry: res.data.rows });
+      if (res.rows.length === 1) {
+        response.status(200).json({ status: 'success', entry: res.rows });
       } else {
         response.status(404).json({ status: 'error', message: 'No entry found' });
       }
@@ -83,7 +83,7 @@ exports.getDiary = (request, response) => {
     });
   } else {
     DiaryModel.getAllEntry(request.decoded.userID).then((res) => {
-      response.status(200).json({ status: 'success', entries: res.data.rows });
+      response.status(200).json({ status: 'success', entries: res.rows });
     }).catch((err) => {
       response.status(500).json({ status: 'error', message: err });
     });
@@ -103,12 +103,12 @@ exports.setDiary = (request, response) => {
     const userData = { userId: request.decoded.userID, subject: request.body.subject, diary: request.body.diary };
     DiaryModel.addEntry(userData).then((res) => {
       if (res.status === 'success') {
-        response.status(200).json({ status: 'success', message: 'Entry saved successfully' });
+        response.status(200).json({ status: 'success', message: 'Entry saved successfully', entry: res.message.rows[0] });
       } else {
-        response.status(500).json({ status: 'error', message: res });
+        response.status(500).json({ status: 'error', message: 'Server error' });
       }
     }).catch((err) => {
-      response.status(500).json({ status: 'error', message: err });
+      response.status(500).json({ status: 'error', message: 'Server error1' });
     });
   }
 }
@@ -124,22 +124,26 @@ exports.updateDiary = (request, response) => {
     response.status(400).json({ status: 'error', message: 'provide all fields' });
   } else {
     const userData = { userId: request.decoded.userID, entry: request.params.id, subject: request.body.subject, diary: request.body.diary };
-    DiaryModel.getTimedEntry(userData).then((done) => {
-      if (done.data.rows.length !== 1) {
-        response.status(501).json({ status: 'error', message: 'invalid entry Id' });
+    DiaryModel.getEntry({ userId: request.decoded.userID, entry: request.params.id }).then((res) => {
+      if (res.rows.length < 1) {
+        response.status(404).json({ status: 'error', message: 'Invalid Id' });
       } else {
-        DiaryModel.updateDiary(userData).then((res) => {
-          if (res.status === 'success') {
-            response.status(200).json({ status: 'success', message: 'update successful' });
+        DiaryModel.getTimedEntry(userData).then((done) => {
+          if (done.data.rows.length !== 1) {
+            response.status(400).json({ status: 'error', message: 'It\'s too late to update this' });
           } else {
-            response.status(400).json({ status: 'error', message: res });
+            DiaryModel.updateDiary(userData).then((res) => {
+              response.status(200).json({ status: 'success', message: 'update successful', entry: res.rows });
+            }).catch((err) => {
+              response.status(500).json({ status: 'error', message: 'Internal server error2' });
+            });
           }
         }).catch((err) => {
-          response.status(500).json({ status: 'error', message: 'Internal server error' });
+          response.status(500).json({ status: 'error', message: 'Internal server error1' });
         });
       }
     }).catch((err) => {
-      response.status(500).json({ status: 'error', message: 'Internal server error' });
+      response.status(500).json({ status: 'error', message: err });
     });
   }
 }
