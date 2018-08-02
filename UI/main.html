@@ -1,5 +1,5 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>My Diary</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -25,10 +25,9 @@
     <div id="sidebar-left">
         <span id="add" class="btn"><span class="plus">+</span> New</span><br/><br/>
         <ul>
-            <li class="side-item" onclick="getDairy('andela')">This is Andela</li>
-            <li class="side-item" onclick="getDairy('africa')">This is Africa</li>
-            <li class="side-item" onclick="getDairy('project')">Fast track project</li>
-            <li class="side-item" onclick="getDairy('work')">Done with work</li>
+            <button class="btn" onclick="getDairy()" style="font-size:15px"><i class="fa fa-list"></i> Entries</button>
+            <!--<li class="side-item" onclick="getDairy()">Entries</li>-->
+            <!--<li class="side-item" onclick="getDairy('work')">Done with work</li>-->
         </ul>
     </div>
     <div id="main" tabindex="-1">
@@ -38,16 +37,10 @@
             <div id="note">Everyone can have their own personal online diary or journal on the Internet - it's free at my-diary! We will host your journal online at no cost. Go ahead and create your own public or private diary today. Our focus is on security and privacy, and diaries are private by default.</div>
             <a class="style-button" id="create">Create Note</a>
         </div>
-        <div id="view-entry" class="center-panel">
-            <article>
-                <i class="time-wrapper"><h7 id="dairy-time"></h7></i>
-                <h1 id="dairy-subject"></h1>
-                <p class="font-color" id="dairy-main"></p>
-                <p class="btn-wrapper">
-                    <input id="article-edit" class="submit-btn btn-good" type="button" value="EDIT" onclick="">
-                    <input class="submit-btn btn-danger" type="button" value="DELETE" onclick="">
-                </p>
-            </article>
+        <div id="my-table">
+            <table id="table-id">
+                
+            </table>
         </div>
         <div id="footer">
             <p class="footer-text">Young Nwadike &copy; Andela bootcamp</p>
@@ -175,8 +168,26 @@
     
         </div>
     </div>
+    <!-- The entry Modal -->
+    <div id="entry-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>
+                <span class="font-color">Entry</span>
+            </p>
+            <div id="view-entry" class="center-panel">
+                <article>
+                    <i class="time-wrapper">
+                        <h7 id="dairy-time"></h7>
+                    </i>
+                    <h1 id="dairy-subject"></h1>
+                    <p class="font-color" id="dairy-main"></p>
+                </article>
+            </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript" src="assets/js/main.js"></script>
-<script type="text/javascript" src="assets/js/dashboard.js"></script>
 <script type="text/javascript" src="assets/js/scripts.js"></script>
+<script type="text/javascript" src="assets/js/dashboard.js"></script>
 </html>

@@ -34,8 +34,8 @@ article {
     float: left;
     text-align: justify;
     border-radius: 10px;
-    padding: 20px;
-    width: 70%;
+    padding: 5%;
+    width: 100%;
     background-color: white;
 }
 
@@ -112,6 +112,62 @@ li:hover {
 .font-color {
     color: rgb(85, 83, 95);
 }
+
+#table-id {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tbody-id > :first-child, .t-75 {
+    border-top-left-radius: 15px;
+}
+
+#tbody-id > :first-child, .t-25 {
+    border-top-right-radius: 15px;
+}
+
+#table-id td,
+#table-id th {
+    padding: 2px;
+}
+
+#table-id tr > :first-child {
+    padding-left: 10px;
+    text-align: left;
+}
+
+#table-id tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#table-id tr:nth-child(odd) {
+    background-color: #e0e2e2;
+}
+
+#table-id tr:hover {
+    background-color: #ddd;
+}
+
+#table-id th {
+    text-align: left;
+    background-color: rgb(85, 83, 95);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: white;
+}
+
+#bt-action {
+    padding-left: 10%;
+}
+#del-bt {
+    float: right;
+    margin-right: 10%;
+}
+
+#diary-sub {
+    margin-right: 10%;
+}
+
 @media only screen and (min-width: 360px) and (max-width: 904px) {
     #writeup-wrapper {
         color: white;
@@ -162,6 +218,28 @@ li:hover {
      .form_div input[type="button"] {
          width: 80%;
      }
+
+    .submit-btn {
+        min-width: 50px;
+        padding:3px;
+        border: 0px;
+        font-size: 10px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .t-75 {
+        width: 60%;
+        color: rgb(85, 83, 95);
+    }
+    .t-25 {
+        width: 40%;
+    }
+     #my-table {
+     margin: 5%;
+     display: none;
+ }
 }
 @media only screen and (min-width: 904px) and (max-width: 1000px) {
     #writeup-wrapper, #wrapper, #empty {
@@ -219,6 +297,23 @@ li:hover {
      .form_div input[type="button"] {
          width: 80%;
      }
+    .submit-btn {
+        min-width: 50px;
+        padding:3px;
+        border: 0px;
+        font-size: 10px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .t-75 {
+        width: 60%;
+        color: rgb(85, 83, 95);
+    }
+    .t-25 {
+        width: 40%;
+    }
 }
 #main-index {
     background-color: transparent !important;
@@ -255,7 +350,25 @@ li:hover {
     #empty {
         width: 10px;
     }
+    .submit-btn {
+        min-width: 80px;
+        padding: 7px;
+        border: 0px;
+        font-size: 17px;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .t-75 {
+        width: 75%;
+        color: rgb(85, 83, 95);
+    }
+    .t-25 {
+        width: 25%;
+    }
 }
+
 
 
 #wrapper h1 {
@@ -366,14 +479,12 @@ input[type="button"]:hover {
         float: left;
         text-align: justify;
         border-radius: 10px;
-        padding: 20px;
-        width: 80%;
+        padding: 5%;
+        width: 100%;
         background-color: white;
     }
     .center-panel {
-        padding-top: 110px;
-        padding-left: 50;
-        padding-right: 0;
+        padding-right: 8%;
     }
     #main {
         float: left;
@@ -437,14 +548,12 @@ input[type="button"]:hover {
         float: left;
         text-align: justify;
         border-radius: 10px;
-        padding: 20px;
-        width: 85%;
+        padding: 5%;
+        width: 100%;
         background-color: white;
     }
     .center-panel {
-        padding-top: 110px;
-        padding-left: 50;
-        padding-right: 0;
+        padding-right: 8%;
     }
     #main {
         float: left;
@@ -509,13 +618,12 @@ input[type="button"]:hover {
         float: left;
         text-align: justify;
         border-radius: 10px;
-        padding: 20px;
-        width: 70%;
+        padding: 5%;
+        width: 100%;
         background-color: white;
     }
     .center-panel {
-        padding-top: 110px;
-        padding-left: 180px;
+        padding-right: 8%;
     }
     .small-devices {
         display: none;
@@ -590,22 +698,13 @@ input[type="button"]:hover {
     font-weight: bold;
     color: rgb(85, 83, 95);
 }
-.submit-btn {
-    min-width: 80px;
-    padding: 7px;
-    border: 0px;
-    font-size: 17px;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-}
 
 .btn-good {
     background-color: #7F8C8D;
 }
 
 .btn-danger {
-    background-color: #e63731;
+    background-color: #413c3c;
 }
 
 .btn-wrapper {
@@ -668,9 +767,11 @@ input[type="button"]:hover {
     text-align: center;
     width: 196px;
 }
- #view-entry {
+ #my-table {
+     margin: 5%;
      display: none;
  }
+
  .time-wrapper {
      font-size: 13px;
      padding-top: 0px;
@@ -839,7 +940,7 @@ textarea {
     border: 1px solid #ddd;
     border-radius: .5rem;
     padding: .5rem;
-    min-width: 500;
+    min-width: 95%;
     color: #666;
     font-size: 1rem;
     margin-bottom: .3125rem;
@@ -854,7 +955,7 @@ textarea:focus, input:focus {
 textarea {
     /*min-width: 20rem;*/
     min-height: 7rem;
-    min-width: 500%;
+    min-width: 95%;
 }
 
 /* tooltip style*/

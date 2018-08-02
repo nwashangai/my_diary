@@ -74,8 +74,8 @@ describe('Diary', () => {
         .end((err, res) => {
           res.should.have.status(403);
           res.type.should.equal('application/json');
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'invalid credentials');
           done();
         });
     });
@@ -89,8 +89,8 @@ describe('Diary', () => {
         .end((err, res) => {
           res.should.have.status(403);
           res.type.should.equal('application/json');
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'error');
+          res.body.should.have.property('message', 'invalid credentials');
           done();
         });
     });
@@ -104,8 +104,9 @@ describe('Diary', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.type.should.equal('application/json');
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
+          res.body.should.have.property('status', 'success');
+          res.body.should.have.property('message', 'login successful');
+          res.body.should.have.property('token');
           done();
         });
     });

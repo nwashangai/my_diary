@@ -1,15 +1,15 @@
 const BASE_URL = 'http://localhost:3000/';
 
-const request = (type, urlString, payload) => {
+const request = (type, urlString, payload = {}) => {
   const url = `${BASE_URL}${urlString}`;
   if (type === 'get') {
     return fetch(url, {
       method: 'GET',
-      body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',
+        'x-access-token': window.localStorage.getItem('token-key') || null,
       },
-      mode: 'cores',
+      mode: 'cors',
       credentials: 'omit',
     }).then((res) => {
       return res.json();
@@ -25,6 +25,7 @@ const request = (type, urlString, payload) => {
       body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',
+        'x-access-token': window.localStorage.getItem('token-key') || null,
       },
       mode: 'cores',
       credentials: 'omit',
@@ -45,8 +46,9 @@ const request = (type, urlString, payload) => {
       body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',
+        'x-access-token': window.localStorage.getItem('token-key') || null,
       },
-      mode: 'cores',
+      mode: 'cors',
       credentials: 'omit',
     }).then((res) => {
       return res.json();
@@ -60,11 +62,11 @@ const request = (type, urlString, payload) => {
 }
 
 const loadData = () => {
-  request('post', 'api/v1/auth/signup/', data).then((response) => {
+  return request('get', 'api/v1/entries/').then((response) => {
     if (response.status === 'error') {
       window.location.href = 'index.html';
     } else {
-      loginAlert(response.message, '#6378c0');
+      return response.entries;
     }
   });
 }

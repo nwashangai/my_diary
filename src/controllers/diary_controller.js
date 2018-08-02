@@ -41,7 +41,7 @@ exports.signUp = (request, response) => {
  */
 exports.login = (request, response) => {
   if (!validate.isValidLogin(request.body)) {
-    response.json({ status: 'error', message: 'sorry please provide all fields' });
+    response.status(400).json({ status: 'error', message: 'sorry please provide all fields' });
   } else {
     DiaryModel.login(request.body.email).then((res) => {
       if (res.status === 'success') {
@@ -58,6 +58,8 @@ exports.login = (request, response) => {
       } else {
         response.status(401).json({ status: 'error', message: res.status });
       }
+    }).catch((err) => {
+      response.status(500).json({ status: 'error', message: err });
     });
   }
 }
@@ -74,17 +76,16 @@ exports.getDiary = (request, response) => {
       if (res.data.rows.length === 1) {
         response.status(200).json({ status: 'success', entry: res.data.rows });
       } else {
-        response.status(200).json({ status: 'error', message: 'No entry found' });
+        response.status(404).json({ status: 'error', message: 'No entry found' });
       }
     }).catch((err) => {
       response.status(500).json({ status: 'error', message: err });
     });
   } else {
-    DiaryModel.getAllEntry(request.decoded.userID).then((res, err) => {
-      if (err) {
-        response.status(501).json({ status: 'error', entries: err });
-      }
+    DiaryModel.getAllEntry(request.decoded.userID).then((res) => {
       response.status(200).json({ status: 'success', entries: res.data.rows });
+    }).catch((err) => {
+      response.status(500).json({ status: 'error', message: err });
     });
   }
 }
@@ -104,7 +105,7 @@ exports.setDiary = (request, response) => {
       if (res.status === 'success') {
         response.status(200).json({ status: 'success', message: 'Entry saved successfully' });
       } else {
-        response.status(400).json({ status: 'error', message: res });
+        response.status(500).json({ status: 'error', message: res });
       }
     }).catch((err) => {
       response.status(500).json({ status: 'error', message: err });
