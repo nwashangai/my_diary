@@ -124,10 +124,7 @@ exports.updateDiary = (request, response) => {
     response.status(400).json({ status: 'error', message: 'provide all fields' });
   } else {
     const userData = { userId: request.decoded.userID, entry: request.params.id, subject: request.body.subject, diary: request.body.diary };
-    DiaryModel.getTimedEntry(userData).then((done, err) => {
-      if (err) {
-        response.status(501).json({ status: 'error', entries: err });
-      }
+    DiaryModel.getTimedEntry(userData).then((done) => {
       if (done.data.rows.length !== 1) {
         response.status(501).json({ status: 'error', message: 'invalid entry Id' });
       } else {
@@ -138,9 +135,11 @@ exports.updateDiary = (request, response) => {
             response.status(400).json({ status: 'error', message: res });
           }
         }).catch((err) => {
-          response.status(500).json({ status: 'error', message: err });
+          response.status(500).json({ status: 'error', message: 'Internal server error' });
         });
       }
+    }).catch((err) => {
+      response.status(500).json({ status: 'error', message: 'Internal server error' });
     });
   }
 }
