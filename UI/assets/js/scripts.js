@@ -38,9 +38,15 @@ let toggleMenu = () => {
     }
 }
 
+const alertTrigger = (data) => {
+  document.getElementById('alert-data').innerHTML = data
+  modal.style.display = 'none'
+  alertBx.style.display = 'block'
+}
+
 let validate = (str, regex) => {
     if (regex === 'name') {
-        var re = /^[a-zA-Z]{3,25}$/
+        var re = /^[a-zA-Z ]{3,25}$/
         if (!re.test(str.toLowerCase())) {
             loginAlert('Invalid name')
             return false
@@ -60,29 +66,41 @@ let validate = (str, regex) => {
             return false
         }
     }
+    if (regex === 'header') {
+        var re = /^[a-zA-Z #?&.,:]{2,40}$/
+        if (!re.test(str.toLowerCase())) {
+            return 400;
+        }
+    }
+    if (regex === 'text') {
+        var re = /^[a-zA-Z #?&.,:]{5,}$/
+        if (!re.test(str.toLowerCase())) {
+            return 401;
+        }
+    }
     return true
 }
 
 let RunSignupValidate = () => {
-    var name = document.getElementById('sname').value;
-    var email = document.getElementById('semail').value;
-    var pass = document.getElementById('spassword').value;
-    if (validate(name, 'name')) {
-        if (validate(email, 'email')) {
-            if (validate(pass, 'password')) {
-                var data = { full_name: name, email: email, password: pass };
-                document.getElementById('loginAlert').style.display = 'none';
-                request('post', 'api/v1/auth/signup/', data).then((response) => {
-                    if (response.status === 'error') {
-                        loginAlert(response.message);
-                    } else {
-                        loginAlert(response.message, '#6378c0');
-                    }
-                });
-                return true
-            }
-        }
+  var name = document.getElementById('sname').value;
+  var email = document.getElementById('semail').value;
+  var pass = document.getElementById('spassword').value;
+  if (validate(name, 'name')) {
+    if (validate(email, 'email')) {
+      if (validate(pass, 'password')) {
+        var data = { full_name: name, email: email, password: pass };
+        document.getElementById('loginAlert').style.display = 'none';
+        request('post', 'auth/signup/', data).then((response) => {
+          if (response.status === 'error') {
+            loginAlert(response.message);
+          } else {
+            loginAlert(response.message, '#6378c0');
+          }
+        });
+        return true
+      }
     }
+  }
     return false
 }
 
@@ -93,7 +111,7 @@ let RunLoginValidate = () => {
     if (validate(pass, 'password')) {
       var data = { email: email, password: pass };
       document.getElementById('loginAlert').style.display = 'none';
-      request('post', 'api/v1/auth/login/', data).then((response) => {
+      request('post', 'auth/login/', data).then((response) => {
         if (response.status === 'error') {
           loginAlert(response.message);
         } else {
@@ -103,7 +121,7 @@ let RunLoginValidate = () => {
       });
       return true
     }
-}
+  }
 return false
 }
 
@@ -119,8 +137,36 @@ let getDairy = () => {
 }
 
 homeBtn.onclick = () => {
-  document.getElementById('view-entry').style.display = 'none';
+  document.getElementById('my-table').style.display = 'none';
   document.getElementById('welcome-wrapper').style.display = 'block';
+}
+
+document.getElementById('addEntry').onclick = () => {
+  let sub = document.getElementById('my-text-field').value;
+  let entry = document.getElementById('my-textarea').value;
+  if (validate(sub, 'header') !== 400) {
+    if (validate(entry, 'text') !== 401) {
+      let data = { subject: sub, diary: entry };
+      request('post', 'entries', data).then((response) => {
+        if (response.status === 'error') {
+          alertTrigger(response.message);
+        } else {
+          alertTrigger(response.message);
+          loadData().then((response) => {
+            data = response;
+          }).catch((err) => {
+            alertTrigger('Server error');
+          });
+        }
+      }).catch((err) => {
+        alertTrigger('Server error');
+      });
+    } else {
+      alertTrigger('Invalid text');
+    }
+  } else {
+    alertTrigger('Invalid Subject');
+  }
 }
 
 const modal = document.getElementById('dairy-modal');
@@ -151,11 +197,6 @@ prf.onclick = () => {
 }
 settings.onclick = () => {
     stngModal.style.display = 'block'
-}
-addBtn.onclick = () => {
-    document.getElementById('alert-data').innerHTML = 'Item added'
-    modal.style.display = 'none'
-    alertBx.style.display = 'block'
 }
 
 let display = (identifier) => {

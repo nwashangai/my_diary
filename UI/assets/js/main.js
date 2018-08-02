@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:3000/api/v1/';
 
 const request = (type, urlString, payload = {}) => {
   const url = `${BASE_URL}${urlString}`;
@@ -62,7 +62,7 @@ const request = (type, urlString, payload = {}) => {
 }
 
 const loadData = () => {
-  return request('get', 'api/v1/entries/').then((response) => {
+  return request('get', 'entries/').then((response) => {
     if (response.status === 'error') {
       window.location.href = 'index.html';
     } else {
