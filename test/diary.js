@@ -75,7 +75,7 @@ describe('Diary', () => {
           .get(`/entries/${userId}`)
           .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
           .end((err, res) => {
-            res.should.have.status(200);
+            res.should.have.status(404);
             res.type.should.equal('application/json');
             res.body.should.have.property('status', 'error');
             res.body.should.have.property('message', 'No entry found');
