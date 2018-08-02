@@ -1,3 +1,5 @@
+
+let data = [];
 var homeBtn = document.getElementById('home');
 var alertBx = document.getElementById('alert-box');
 
@@ -108,30 +110,30 @@ let RunLoginValidate = () => {
 return false
 }
 
-let getDairy = (identifier) => {
-    var item = search(identifier, data)
-    document.getElementById('welcome-wrapper').style.display = 'none'
-    document.getElementById('dairy-time').innerHTML = item.date
-    document.getElementById('dairy-subject').innerHTML = item.subject
-    document.getElementById('dairy-main').innerHTML = item.dairy
-    document.getElementById('view-entry').style.display = 'block'
-    if (window.matchMedia('(max-width: 1000px)').matches) {
-        document.getElementById('main').focus()
-    }
+let getDairy = () => {
+  let tdata = '';
+  data.forEach((item) => {
+      tdata += `<tr><td id="diary-sub">${item.subject}</span></td><td><span id="bt-action"><input class="submit-btn btn-good" onclick="display('${item.id}')" id="addEntry" type="button" value="View"><input id="del-bt" class="submit-btn btn-danger" type="button" value="DELETE" onclick=""></span></td></tr>`
+  }, this);
+  document.getElementById('table-id').innerHTML = '<tbody id="tbody-id"><tr><th class="t-75" > Subject</th ><th class="t-25">Action</th></tr ></tbody>';
+  document.getElementById('tbody-id').innerHTML += tdata;
+  document.getElementById('welcome-wrapper').style.display = 'none';
+  document.getElementById('my-table').style.display = 'block';
 }
 
 homeBtn.onclick = () => {
-    document.getElementById('view-entry').style.display = 'none'
-    document.getElementById('welcome-wrapper').style.display = 'block'
+  document.getElementById('view-entry').style.display = 'none';
+  document.getElementById('welcome-wrapper').style.display = 'block';
 }
 
 // Get the modal
-var modal = document.getElementById('dairy-modal')
-var prfModal = document.getElementById('profile-modal')
-var stngModal = document.getElementById('settings-modal')
+const modal = document.getElementById('dairy-modal');
+const prfModal = document.getElementById('profile-modal');
+const stngModal = document.getElementById('settings-modal');
+const entModal = document.getElementById('entry-modal');
 
 //get the entry
-var addBtn = document.getElementById('addEntry')
+const addBtn = document.getElementById('addEntry');
 
 // Get the button that opens the modal
 var btn = document.getElementById('add')
@@ -143,6 +145,7 @@ var settings = document.getElementById('settings')
 var clsAdd = document.getElementsByClassName('close')[0]
 var clsPrf = document.getElementsByClassName('close')[1]
 var clsstng = document.getElementsByClassName('close')[2]
+var clsent = document.getElementsByClassName('close')[3]
 
 // When the user clicks the button, open the modal 
 btn.onclick = () => {
@@ -163,6 +166,14 @@ addBtn.onclick = () => {
     alertBx.style.display = 'block'
 }
 
+let display = (identifier) => {
+    var item = search(identifier, data)
+    document.getElementById('dairy-time').innerHTML = item.date;
+    document.getElementById('dairy-subject').innerHTML = item.subject;
+    document.getElementById('dairy-main').innerHTML = item.diary;
+    entModal.style.display = 'block'
+}
+
 // When the user clicks on (x), close the modal
 clsAdd.onclick = () => {
     modal.style.display = 'none'
@@ -172,6 +183,9 @@ clsPrf.onclick = () => {
 }
 clsstng.onclick = () => {
     stngModal.style.display = 'none'
+}
+clsent.onclick = () => {
+    entModal.style.display = 'none'
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -185,6 +199,9 @@ window.onclick = (event) => {
     if (event.target == stngModal) {
         stngModal.style.display = 'none'
     }
+    if (event.target == entModal) {
+        entModal.style.display = 'none'
+    }
 }
 
 // search through an object
@@ -195,10 +212,3 @@ let search = (nameKey, obj) => {
         }
     }
 }
-
-var data = [
-    { 'id': 'andela', 'subject': 'This is Andela', 'dairy': 'Andela is an American company that specializes in training software developers. The company was founded in 2014 and is based in New York City.', 'date': '2018 july 2 3:34 PM' },
-    { 'id': 'africa', 'subject': 'This is Africa', 'dairy': 'Africa is the world\'s second largest and second most-populous continent. At about 30.3 million km² including adjacent islands, it covers 6% of Earth\'s total surface area and 20% of its land area.', 'date': '2018 may 5 4:04 AM' },
-    { 'id': 'project', 'subject': 'Fast track project', 'dairy': 'Contemporary business and science treat as a project any undertaking, carried out individually or collaboratively and possibly involving research or design, that is carefully planned to achieve a particular aim.', 'date': '2018 feb 19 11:20 AM' },
-    { 'id': 'work', 'subject': 'Done with work', 'dairy': 'Andela is an American company that specializes in training software developers. The company was founded in 2014 and is based in New York City.', 'date': '2018 Aug 26 1:01 PM' }
-]
