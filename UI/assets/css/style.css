@@ -133,6 +133,7 @@ li:hover {
 
 #table-id tr > :first-child {
     padding-left: 10px;
+    text-align: left;
 }
 
 #table-id tr:nth-child(even) {
@@ -235,6 +236,10 @@ li:hover {
     .t-25 {
         width: 40%;
     }
+     #my-table {
+     margin: 5%;
+     display: none;
+ }
 }
 @media only screen and (min-width: 904px) and (max-width: 1000px) {
     #writeup-wrapper, #wrapper, #empty {
@@ -935,7 +940,7 @@ textarea {
     border: 1px solid #ddd;
     border-radius: .5rem;
     padding: .5rem;
-    min-width: 500;
+    min-width: 95%;
     color: #666;
     font-size: 1rem;
     margin-bottom: .3125rem;
@@ -950,7 +955,7 @@ textarea:focus, input:focus {
 textarea {
     /*min-width: 20rem;*/
     min-height: 7rem;
-    min-width: 500%;
+    min-width: 95%;
 }
 
 /* tooltip style*/

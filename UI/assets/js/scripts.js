@@ -38,7 +38,6 @@ let toggleMenu = () => {
     }
 }
 
-// Define validator
 let validate = (str, regex) => {
     if (regex === 'name') {
         var re = /^[a-zA-Z]{3,25}$/
@@ -64,7 +63,6 @@ let validate = (str, regex) => {
     return true
 }
 
-/* Run validator for SignUp */
 let RunSignupValidate = () => {
     var name = document.getElementById('sname').value;
     var email = document.getElementById('semail').value;
@@ -88,7 +86,6 @@ let RunSignupValidate = () => {
     return false
 }
 
-/* Run validator for Login */
 let RunLoginValidate = () => {
     var email = document.getElementById('lemail').value;
     var pass = document.getElementById('lpassword').value;
@@ -126,28 +123,23 @@ homeBtn.onclick = () => {
   document.getElementById('welcome-wrapper').style.display = 'block';
 }
 
-// Get the modal
 const modal = document.getElementById('dairy-modal');
 const prfModal = document.getElementById('profile-modal');
 const stngModal = document.getElementById('settings-modal');
 const entModal = document.getElementById('entry-modal');
 
-//get the entry
 const addBtn = document.getElementById('addEntry');
 
-// Get the button that opens the modal
 var btn = document.getElementById('add')
 var btn2 = document.getElementById('create')
 var prf = document.getElementById('prf')
 var settings = document.getElementById('settings')
 
-// Get the <span> element that closes the modal
 var clsAdd = document.getElementsByClassName('close')[0]
 var clsPrf = document.getElementsByClassName('close')[1]
 var clsstng = document.getElementsByClassName('close')[2]
 var clsent = document.getElementsByClassName('close')[3]
 
-// When the user clicks the button, open the modal 
 btn.onclick = () => {
     modal.style.display = 'block'
 }
@@ -174,7 +166,6 @@ let display = (identifier) => {
     entModal.style.display = 'block'
 }
 
-// When the user clicks on (x), close the modal
 clsAdd.onclick = () => {
     modal.style.display = 'none'
 }
@@ -188,7 +179,6 @@ clsent.onclick = () => {
     entModal.style.display = 'none'
 }
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = (event) => {
     if (event.target == modal) {
         modal.style.display = 'none'
@@ -204,7 +194,6 @@ window.onclick = (event) => {
     }
 }
 
-// search through an object
 let search = (nameKey, obj) => {
     for (var i = 0; i < obj.length; i++) {
         if (obj[i].id == nameKey) {
