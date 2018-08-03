@@ -31,6 +31,7 @@ router.use((req, res, next) => {
 router.get('/entries', DiaryController.getDiary);
 router.get('/entries/:id', DiaryController.getDiary);
 router.post('/entries', DiaryController.setDiary);
+router.get('/user', DiaryController.myProfile);
 router.put('/entries/:id', DiaryController.updateDiary);
 
 module.exports = router;

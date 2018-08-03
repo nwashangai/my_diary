@@ -1,5 +1,6 @@
 
 let data = [];
+let user = {};
 const homeBtn = document.getElementById('home');
 const alertBx = document.getElementById('alert-box');
 const modal = document.getElementById('dairy-modal');
@@ -237,7 +238,12 @@ btn2.onclick = () => {
     modal.style.display = 'block'
 }
 prf.onclick = () => {
-    prfModal.style.display = 'block';
+  document.getElementById('my-name').innerHTML = user.full_name;
+  document.getElementById('my-email').innerHTML = user.email;
+  document.getElementById('my-total').innerHTML = user.total;
+  document.getElementById('me-content').innerHTML = user.bio;
+  document.getElementById('tbl-ali').style.textAlign = 'left';
+  prfModal.style.display = 'block';
 }
 settings.onclick = () => {
     stngModal.style.display = 'block';
