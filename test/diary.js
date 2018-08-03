@@ -86,7 +86,7 @@ describe('Diary', () => {
   });
 
   describe('POST /entries', () => {
-    it('it should create a new entry', (done) => {
+    /* it('it should create a new entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
@@ -97,7 +97,7 @@ describe('Diary', () => {
           res.body.should.have.property('message', 'Entry saved successfully');
           done();
         });
-    });
+    }); */
     it('it should reject the entry', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
