@@ -102,6 +102,7 @@ exports.setDiary = (request, response) => {
     DiaryModel.addEntry(userData).then((res) => {
       response.status(200).json({ status: 'success', message: 'Entry saved successfully', entry: res.rows[0] });
     }).catch((err) => {
+      console.log(err)
       response.status(500).json({ status: 'error', message: 'Server error' });
     });
   }

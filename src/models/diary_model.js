@@ -104,7 +104,7 @@ exports.getTimedEntry = async (info) => {
  * @argument {object} userdata - entry data
  */
 exports.addEntry = (userData) => {
-  return query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', "${userData.diary}") RETURNING *`);
+  return query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', '${userData.diary}') RETURNING *`);
 };
 
 /**
