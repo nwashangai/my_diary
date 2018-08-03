@@ -158,7 +158,13 @@ exports.getReminders = (request, response) => {
 exports.myProfile = (request, response) => {
   DiaryModel.getUser(request.decoded.userID).then((done) => {
     if (done.rows.length === 1) {
-      response.status(200).json({ status: 'success', entry: done.rows[0] });
+      const entry = done.rows[0];
+      DiaryModel.getTotal(entry.id).then((res) => {
+        entry.total = res.rows[0].total;
+        response.status(200).json({ status: 'success', message: 'login successful', entry });
+      }).catch((err) => {
+        response.status(500).json({ status: 'error', message: 'invalid credentials' });
+      });
     } else {
       response.status(404).json({ status: 'error', message: 'No entry' });
     }
