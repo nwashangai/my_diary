@@ -50,7 +50,7 @@ const query = async (data) => {
  */
 exports.signUp = async (userData) => {
   try {
-    const { res } = await query(`INSERT INTO users(full_name, email, password) values('${userData.full_name}', '${userData.email}', '${userData.password}')`);
+    const { res } = await query(`INSERT INTO users(full_name, email, password) values('${userData.full_name}', '${userData.email}', '${userData.password}') RETURNING *`);
     return { status: 'success', message: res };
   } catch (error) {
     return { status: 'error', message: error };
@@ -62,12 +62,8 @@ exports.signUp = async (userData) => {
  * @method
  * @argument {String} email - user email address
  */
-exports.login = async (email) => {
-  try {
-    return { status: 'success', data: await query(`SELECT * FROM users WHERE email = '${email}'`) };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.login = (email) => {
+  return query(`SELECT * FROM users WHERE email = '${email}'`);
 };
 
 /**
@@ -75,12 +71,8 @@ exports.login = async (email) => {
  * @method
  * @argument {String} userId - user ID
  */
-exports.getAllEntry = async (userId) => {
-  try {
-    return { status: 'success', data: await query(`SELECT * FROM diary WHERE userid = '${userId}'`) };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.getAllEntry = (userId) => {
+  return query(`SELECT * FROM diary WHERE userid::int8 = ${userId}::int8`);
 };
 
 /**
@@ -88,12 +80,8 @@ exports.getAllEntry = async (userId) => {
  * @method
  * @argument {object} userdata - user entry information
  */
-exports.getEntry = async (info) => {
-  try {
-    return { status: 'success', data: await query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}'`) };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.getEntry = (info) => {
+  return query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}'`);
 };
 
 /**
@@ -102,14 +90,8 @@ exports.getEntry = async (info) => {
  * @argument {object} userdata - user entry information
  */
 exports.getTimedEntry = async (info) => {
-  try {
-    return {
-      status: 'success', data: await query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}' AND (DATE_PART('day', 'NOW()'::timestamp - date::timestamp) * 24 + 
-              DATE_PART('hour', 'NOW()'::timestamp - date::timestamp)) < 24`),
-    };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+  return query(`SELECT * FROM diary WHERE userid = '${info.userId}' AND id = '${info.entry}' AND (DATE_PART('day', 'NOW()'::timestamp - date::timestamp) * 24 + 
+              DATE_PART('hour', 'NOW()'::timestamp - date::timestamp)) < 24`);
 };
 
 /**
@@ -117,13 +99,8 @@ exports.getTimedEntry = async (info) => {
  * @method
  * @argument {object} userdata - entry data
  */
-exports.addEntry = async (userData) => {
-  try {
-    const { res } = await query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', '${userData.diary}')`);
-    return { status: 'success', message: res };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.addEntry = (userData) => {
+  return query(`INSERT INTO diary(userid, subject, diary) values('${userData.userId}', '${userData.subject}', '${userData.diary}') RETURNING *`);
 };
 
 /**
@@ -131,11 +108,50 @@ exports.addEntry = async (userData) => {
  * @method
  * @argument {object} userdata - new entry data
  */
-exports.updateDiary = async (userData) => {
-  try {
-    const { res } = await query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE id = '${userData.entry}' AND userid = '${userData.userId}'`);
-    return { status: 'success', message: res };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.updateDiary = (userData) => {
+  return query(`UPDATE diary SET subject = '${userData.subject}', diary = '${userData.diary}' WHERE (id = '${userData.entry}' AND userid = '${userData.userId}') RETURNING *`);
+};
+
+/**
+ * Get user reminders
+ * @method
+ * @argument {object} userId - entry data
+ */
+exports.getReminders = (userId) => {
+  return query(`SELECT * FROM reminder WHERE userid = '${userId}'`);
+};
+
+/**
+ * Save user reminder entry
+ * @method
+ * @argument {object} userdata - reminder data
+ */
+exports.addEReminder = (userData) => {
+  return query(`INSERT INTO reminder(userid, description, date) values('${userData.userId}', '${userData.description}', '${userData.date}') RETURNING *`);
+};
+/**
+ * Update user information
+ * @method
+ * @argument {object} userdata - bio data
+ */
+exports.updateBio = (userData) => {
+  return query(`UPDATE users SET bio = '${userData.bio}' WHERE id = '${userData.userId}' RETURNING *`);
+};
+
+/**
+ * Get total entry
+ * @method
+ * @argument {object} userId - user id
+ */
+exports.getTotal = (userId) => {
+  return query(`SELECT COUNT(*) AS total FROM diary WHERE userid = '${userId}'`);
+};
+
+/**
+ * Delete entry
+ * @method
+ * @argument {object} userData - delete item data
+ */
+exports.delete = (userData) => {
+  return query(`DELETE FROM diary WHERE userid = '${userData.userId}' AND id = '${userData.entry}'`)
 };
