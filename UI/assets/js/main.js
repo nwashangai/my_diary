@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api/v1/';
+const BASE_URL = 'https://diaries-app.herokuapp.com/api/v1/';
 
 const request = (type, urlString, payload = {}) => {
   const url = `${BASE_URL}${urlString}`;
