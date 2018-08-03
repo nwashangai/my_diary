@@ -90,7 +90,7 @@ describe('Diary', () => {
       chai.request('http://localhost:3000/api/v1')
         .post('/entries')
         .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjQxLCJpYXQiOjE1MzI2MDMzOTV9.3hHawOBmwPc3yQjf7k0dIlc2qACBkn04FgHq-w8hlDk')
-        .send({ subject: 'foo', diary: 'bar' })
+        .send({ subject: 'foo for nothin', diary: 'bar is what is bad' })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.have.property('status', 'success');

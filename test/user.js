@@ -51,7 +51,7 @@ describe('Diary', () => {
     });
   });
 
-  describe('/GET api/v1/auth/signup', () => {
+  describe('/POST api/v1/auth/signup', () => {
     it('it should save user account information', (done) => {
       chai.request('http://localhost:3000/api/v1')
         .post('/auth/signup')
