@@ -62,6 +62,15 @@ exports.login = (email) => {
 };
 
 /**
+ * Get user account information
+ * @method
+ * @argument {String} userId - user email address
+ */
+exports.getUser = (userId) => {
+  return query(`SELECT * FROM users WHERE id = '${userId}'`);
+};
+
+/**
  * Get all user entries
  * @method
  * @argument {String} userId - user ID

@@ -155,3 +155,14 @@ exports.getReminders = (request, response) => {
     response.status(500).json({ status: 'error', message: 'Internal server error' });
   });
 }
+exports.myProfile = (request, response) => {
+  DiaryModel.getUser(request.decoded.userID).then((done) => {
+    if (done.rows.length === 1) {
+      response.status(200).json({ status: 'success', entry: done.rows[0] });
+    } else {
+      response.status(404).json({ status: 'error', message: 'No entry' });
+    }
+  }).catch((err) => {
+    response.status(500).json({ status: 'error', message: 'server error' });
+  });
+}
