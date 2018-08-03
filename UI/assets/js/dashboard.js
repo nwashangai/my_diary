@@ -1,6 +1,5 @@
 loadData().then((response) => {
   data = response;
-  console.log(data);
 }).catch((err) => {
   alertTrigger('Server error');
 });
