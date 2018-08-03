@@ -5,7 +5,6 @@ loadData().then((response) => {
 });
 loadUser().then((response) => {
   user = response;
-  console.log(response)
 }).catch((err) => {
   alertTrigger(err);
 });

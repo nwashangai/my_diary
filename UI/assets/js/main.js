@@ -34,7 +34,6 @@ const request = (type, urlString, payload = {}) => {
     }).then((res) => {
       return res.json();
     }).then((res) => {
-      console.log(res);
       return res;
     }, (error) => {
       throw error;
