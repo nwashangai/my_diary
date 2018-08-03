@@ -48,13 +48,8 @@ const query = async (data) => {
  * @method
  * @argument {object} userdata - account information
  */
-exports.signUp = async (userData) => {
-  try {
-    const { res } = await query(`INSERT INTO users(full_name, email, password) values('${userData.full_name}', '${userData.email}', '${userData.password}') RETURNING *`);
-    return { status: 'success', message: res };
-  } catch (error) {
-    return { status: 'error', message: error };
-  }
+exports.signUp = (userData) => {
+    return query(`INSERT INTO users(full_name, email, password) values('${userData.full_name}', '${userData.email}', '${userData.password}') RETURNING *`);
 };
 
 /**

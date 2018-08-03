@@ -20,11 +20,7 @@ exports.signUp = (request, response) => {
         response.status(409).json({ status: 'error', message: 'duplicate email address' });
       } else {
         DiaryModel.signUp(user).then((res) => {
-          if (res.status === 'success') {
-            response.status(200).json({ status: 'success', message: 'Signup successful', entry: res.message.rows[0] });
-          } else {
-            response.json({ status: 'error', message: res });
-          }
+          response.status(200).json({ status: 'success', message: 'Signup successful', entry: res.rows[0] });
         });
       }
     }).catch((err) => {
